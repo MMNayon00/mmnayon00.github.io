@@ -41,6 +41,9 @@
             background-color: #111; /* Matte black for dark mode */
             color: #E0E0E0;
         }
+        /* Mobile hardening: prevent horizontal scroll and allow long strings to wrap */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        .long-text { overflow-wrap: anywhere; word-break: break-word; }
 
         /* Light mode styles */
         .light body {
@@ -237,7 +240,7 @@
                 Example (relative path): src="./images/profile.jpg"
             -->
             <div class="relative w-40 h-40 mx-auto mb-8">
-                <img id="profile-pic" src="486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture" 
+                <img id="profile-pic" src="C:\Users\USER\Desktop\portfolio linux\486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture" 
                      onerror="this.onerror=null; this.src='https://placehold.co/160x160/00adef/111111?text=MMN';"
                      class="w-40 h-40 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
                 <button onclick="editImage('profile-pic')" class="absolute bottom-0 right-0 bg-accent text-black p-2 rounded-full hover:scale-110 transition-transform" title="Edit Profile Picture">
@@ -280,7 +283,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-1.jpg"
                     -->
-                    <img id="about-pic-1" src="487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1" 
+                    <img id="about-pic-1" src="C:\Users\USER\Desktop\portfolio linux\487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+1';"
                          class="rounded-lg object-cover w-full h-64 terminal-card">
                     <button onclick="editImage('about-pic-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 1">
@@ -293,7 +296,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-2.jpg"
                     -->
-                    <img id="about-pic-2" src="6064263805438463450.jpg" alt="About Me 2" 
+                    <img id="about-pic-2" src="C:\Users\USER\Desktop\portfolio linux\6064263805438463450.jpg" alt="About Me 2" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+2';"
                          class="rounded-lg object-cover w-full h-64 terminal-card">
                     <button onclick="editImage('about-pic-2')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 2">
@@ -310,7 +313,7 @@
                 <p class="text-xl text-accent mb-6">Aspiring Network Engineer & Cyber Security Expert</p>
                 
                 <!-- Description -->
-                <div class="text-base md:text-lg space-y-4 text-gray-900 dark:text-gray-300">
+                <div class="text-base md:text-lg space-y-4 text-gray-900 dark:text-gray-300 long-text">
                     <p>
                         A recently CCNA-certified Computer Science student with a strong passion for network engineering and cybersecurity. Proficient in configuring and managing network devices, with hands-on experience in both Windows and Linux Server environments.
                     </p>
@@ -441,7 +444,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-1.png"
                     -->
-                    <img id="project-img-1" src="Screenshot 2025-08-09 171212.png" alt="Project 1" 
+                    <img id="project-img-1" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-08-09 171212.png" alt="Project 1" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=VPN+Project';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 1 Image">
@@ -449,8 +452,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Virtual Private Network (VPN) Implementation Project</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Designed and implemented a secure VPN network with 25 routers, enabling seamless communication and successful connectivity tests between distant nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges, showcasing strong skills in routing, network design, and VPN configuration.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Virtual Private Network (VPN) Implementation Project</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a secure VPN network with 25 routers, enabling seamless communication and successful connectivity tests between distant nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges, showcasing strong skills in routing, network design, and VPN configuration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -470,7 +473,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="Screenshot 2025-09-01 003629.png" alt="Project 3" 
+                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-09-01 003629.png" alt="Project 3" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
@@ -478,8 +481,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">MikroTik Firewall Configuration</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Configured a virtualized MikroTik network with bridging and a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">MikroTik Firewall Configuration</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Configured a virtualized MikroTik network with bridging and a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -498,7 +501,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-3.png"
                     -->
-                    <img id="project-img-4" src="Screenshot 2025-10-31 234601.png" alt="Project 4" 
+                    <img id="project-img-4" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-10-31 234601.png" alt="Project 4" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Cancer+Detection+AI';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-4')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 4 Image">
@@ -506,8 +509,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Gallbladder Cancer Detection from Ultrasound Images Using Deep Learning</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Designed and implemented a deep learning system using transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test accuracy. Built using Python, PyTorch, and scikit-learn.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Gallbladder Cancer Detection from Ultrasound Images Using Deep Learning</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a deep learning system using transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test accuracy. Built using Python, PyTorch, and scikit-learn.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -525,7 +528,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3" 
+                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
@@ -533,8 +536,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Library Management System</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Developed a modern Library Management System using Python (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library operations. Implemented features for adding, searching, issuing, and updating books with a user-friendly graphical interface and secure database integration.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Library Management System</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Developed a modern Library Management System using Python (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library operations. Implemented features for adding, searching, issuing, and updating books with a user-friendly graphical interface and secure database integration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -552,7 +555,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3" 
+                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
@@ -560,8 +563,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Digital Door Lock using Arduino</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Designed and implemented a password-protected digital door lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time feedback on an LCD and controls door access based on password validation, demonstrating a smart and secure prototype for home or office use.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Digital Door Lock using Arduino</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a password-protected digital door lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time feedback on an LCD and controls door access based on password validation, demonstrating a smart and secure prototype for home or office use.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -656,7 +659,7 @@
                     The 'href' attribute MUST be a relative path to a file in your project folder.
                     Example: href="./resume/Nayon_Resume.pdf"
                 -->
-                <a href="CV - Md. Mostofa Nayon (1) (1).pdf" download="Nayon_Resume.pdf" class="btn-primary text-lg inline-flex items-center">
+                <a href="C:\Users\USER\Desktop\portfolio linux\CV - Md. Mostofa Nayon (1) (1).pdf" download="Nayon_Resume.pdf" class="btn-primary text-lg inline-flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     $ sudo download resume.pdf
                 </a>
@@ -675,7 +678,7 @@
                 <span class="w-3 h-3 bg-red-500 rounded-full"></span>
                 <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
                 <span class="w-3 h-3 bg-green-500 rounded-full"></span>
-                <span class="flex-1 text-center text-sm text-gray-800 dark:text-gray-400">new-message.sh</span>
+                <span class="flex-1 text-center text-sm text-gray-800 dark:text-gray-400 truncate max-w-[60%] mx-auto block">new-message.sh</span>
             </div>
             <!-- 
                 CRITICAL FIX: 
@@ -713,7 +716,7 @@
         <!-- Contact Info & Socials -->
         <div class="text-center max-w-3xl mx-auto mt-12">
             <!-- EDITABLE: Email -->
-            <p class="text-lg mb-6">
+            <p class="text-lg mb-6 long-text">
                 Or contact me directly at: <a href="mailto:mostofanayon2001@gmail.com" class="text-accent hover:underline">mostofanayon2001@gmail.com</a>
                 <span class="mx-2">|</span>
                 Phone: <a href="tel:+8801310387836" class="text-accent hover:underline">+8801310387836</a>
@@ -970,6 +973,5 @@
 
 </body>
 </html>
-
 
 
