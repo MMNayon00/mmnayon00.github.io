@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" class="dark"> <!-- Default to dark mode -->
 <head>
@@ -154,7 +155,7 @@
                 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-900 dark:text-gray-300 focus:outline-none">
+                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                     </button>
                 </div>
@@ -182,7 +183,7 @@
                 Example (relative path): src="./images/profile.jpg"
             -->
             <div class="relative w-40 h-40 mx-auto mb-8">
-                <img id="profile-pic" src="C:\Users\USER\Desktop\portfolio linux\486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture" 
+             <img id="profile-pic" src="486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture" 
                      onerror="this.onerror=null; this.src='https://placehold.co/160x160/00adef/111111?text=MMN';"
                      class="w-40 h-40 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
                 <button onclick="editImage('profile-pic')" class="absolute bottom-0 right-0 bg-accent text-black p-2 rounded-full hover:scale-110 transition-transform" title="Edit Profile Picture">
@@ -225,7 +226,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-1.jpg"
                     -->
-                    <img id="about-pic-1" src="C:\Users\USER\Desktop\portfolio linux\487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1" 
+                <img id="about-pic-1" src="487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+1';"
                          class="rounded-lg object-cover w-full h-64 terminal-card">
                     <button onclick="editImage('about-pic-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 1">
@@ -238,7 +239,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-2.jpg"
                     -->
-                    <img id="about-pic-2" src="C:\Users\USER\Desktop\portfolio linux\6064263805438463450.jpg" alt="About Me 2" 
+                <img id="about-pic-2" src="6064263805438463450.jpg" alt="About Me 2" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+2';"
                          class="rounded-lg object-cover w-full h-64 terminal-card">
                     <button onclick="editImage('about-pic-2')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 2">
@@ -255,7 +256,7 @@
                 <p class="text-xl text-accent mb-6">Aspiring Network Engineer & Cyber Security Expert</p>
                 
                 <!-- Description -->
-                <div class="text-base md:text-lg space-y-4 text-gray-900 dark:text-gray-300 long-text">
+                <div class="text-base md:text-lg space-y-4 text-gray-300 long-text">
                     <p>
                         A recently CCNA-certified Computer Science student with a strong passion for network engineering and cybersecurity. Proficient in configuring and managing network devices, with hands-on experience in both Windows and Linux Server environments.
                     </p>
@@ -267,20 +268,20 @@
                 <!-- Social Links -->
                 <div class="flex space-x-6 mt-8">
                     <!-- EDITABLE: Add your social links -->
-                    <a href="https://github.com/MMNayon00" target="_blank" class="text-gray-800 dark:text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="GitHub">
+                    <a href="https://github.com/MMNayon00" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="GitHub">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" class="text-gray-800 dark:text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="LinkedIn">
+                    <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </a>
                     <!-- EDITABLE: Facebook -->
-                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" class="text-gray-800 dark:text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Facebook">
+                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Facebook">
                         <!-- Facebook mark -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"></path>
                         </svg>
                     </a>
-                    <a href="mailto:mostofanayon2001@gmail.com" class="text-gray-800 dark:text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Email">
+                    <a href="mailto:mostofanayon2001@gmail.com" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     </a>
                 </div>
@@ -386,8 +387,8 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-1.png"
                     -->
-                    <img id="project-img-1" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-08-09 171212.png" alt="Project 1" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=VPN+Project';"
+                <img id="project-img-1" src="Screenshot 2025-08-09 171212.png" alt="Project 1" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=VPN+Project';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 1 Image">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
@@ -395,13 +396,11 @@
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">Virtual Private Network (VPN) Implementation Project</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a secure VPN network with 25 routers, enabling seamless communication and successful connectivity tests between distant nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges, showcasing strong skills in routing, network design, and VPN configuration.</p>
+                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a secure VPN network with 25 routers, enabling seamless communication and successful connectivity tests between distant nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges, showcasing strong skills in routing, network design, and VPN configuration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
-                    <!-- EDITABLE: Update href to a live demo if you have one -->
-                    <a href="#" class="btn-primary text-sm flex-1 text-center">$ ./run_demo.sh</a>
+                    <a href="https://github.com/MMNayon00/VPN-Network-Implementation-Project" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
             
@@ -415,8 +414,8 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-09-01 003629.png" alt="Project 3" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
+                <img id="project-img-3" src="Screenshot 2025-09-01 003629.png" alt="Project 3" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
@@ -424,13 +423,11 @@
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">MikroTik Firewall Configuration</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Configured a virtualized MikroTik network with bridging and a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
+                    <p class="mb-4 text-gray-300 long-text">Configured a virtualized MikroTik network with bridging and a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
-                    <!-- EDITABLE: Update href to a live demo if you have one -->
-                    <a href="#" class="btn-primary text-sm flex-1 text-center">$ ./run_demo.sh</a>
+                    <a href="https://github.com/MMNayon00/MikroTik-Router-Configuration-for-a-Small-Network/tree/main" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -443,8 +440,8 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-3.png"
                     -->
-                    <img id="project-img-4" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-10-31 234601.png" alt="Project 4" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Cancer+Detection+AI';"
+                <img id="project-img-4" src="Screenshot 2025-10-31 234601.png" alt="Project 4" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Cancer+Detection+AI';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-4')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 4 Image">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
@@ -452,13 +449,11 @@
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">Gallbladder Cancer Detection from Ultrasound Images Using Deep Learning</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a deep learning system using transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test accuracy. Built using Python, PyTorch, and scikit-learn.</p>
+                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a deep learning system using transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test accuracy. Built using Python, PyTorch, and scikit-learn.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
-                    <!-- EDITABLE: Update href to a live demo if you have one -->
-                    <a href="#" class="btn-primary text-sm flex-1 text-center">$ ./run_demo.sh</a>
+                    <a href="https://github.com/MMNayon00/Gallblader-Cancer-Detection-DL" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -470,8 +465,8 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
+                <img id="project-img-3" src="444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Library+System';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
@@ -479,13 +474,11 @@
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">Library Management System</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Developed a modern Library Management System using Python (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library operations. Implemented features for adding, searching, issuing, and updating books with a user-friendly graphical interface and secure database integration.</p>
+                    <p class="mb-4 text-gray-300 long-text">Developed a modern Library Management System using Python (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library operations. Implemented features for adding, searching, issuing, and updating books with a user-friendly graphical interface and secure database integration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
-                    <!-- EDITABLE: Update href to a live demo if you have one -->
-                    <a href="#" class="btn-primary text-sm flex-1 text-center">$ ./run_demo.sh</a>
+                    <a href="https://github.com/MMNayon00/Library-MS-Project" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -497,8 +490,8 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
+                <img id="project-img-3" src="456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3" 
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Arduino+Door+Lock';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
@@ -506,13 +499,11 @@
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">Digital Door Lock using Arduino</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a password-protected digital door lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time feedback on an LCD and controls door access based on password validation, demonstrating a smart and secure prototype for home or office use.</p>
+                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a password-protected digital door lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time feedback on an LCD and controls door access based on password validation, demonstrating a smart and secure prototype for home or office use.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
-                    <!-- EDITABLE: Update href to a live demo if you have one -->
-                    <a href="#" class="btn-primary text-sm flex-1 text-center">$ ./run_demo.sh</a>
+                    <a href="https://github.com/MMNayon00/DoorLock-Arduino-Project" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -540,17 +531,17 @@
                         <div>
                             <h4 class="text-xl font-bold">B.Sc. in Computer Science and Engineering</h4>
                             <p class="text-accent mb-1">Daffodil International University</p>
-                            <p class="text-gray-800 dark:text-gray-400 text-sm">04/2022 – 04/2026</p>
+                            <p class="text-gray-400 text-sm">04/2022 – 04/2026</p>
                         </div>
                         <div>
                             <h4 class="text-xl font-bold">HSC (Science)</h4>
                             <p class="text-accent mb-1">Daffodil International College</p>
-                            <p class="text-gray-800 dark:text-gray-400 text-sm">2021</p>
+                            <p class="text-gray-400 text-sm">2021</p>
                         </div>
                         <div>
                             <h4 class="text-xl font-bold">SSC (Science)</h4>
                             <p class="text-accent mb-1">Govt. Mohammadpur Model School and College</p>
-                            <p class="text-gray-800 dark:text-gray-400 text-sm">2019</p>
+                            <p class="text-gray-400 text-sm">2019</p>
                         </div>
                     </div>
                 </div>
@@ -562,7 +553,7 @@
                         <div>
                             <h4 class="text-xl font-bold">Customer Service Representative</h4>
                             <p class="text-accent mb-1">Car Kunjo</p>
-                            <p class="text-gray-800 dark:text-gray-400 text-sm">05/2022 – 01/2024</p>
+                            <p class="text-gray-400 text-sm">05/2022 – 01/2024</p>
                             <ul class="list-disc list-inside mt-2 space-y-1">
                                 <li>Provided Tier 1 technical support and troubleshooting for customer issues, resolving inquiries with a 95% satisfaction rate.</li>
                                 <li>Collaborated with the technical team to diagnose and escalate complex network-related problems.</li>
@@ -571,7 +562,7 @@
                         <div>
                             <h4 class="text-xl font-bold">Marketing Coordinator</h4>
                             <p class="text-accent mb-1">Hakim Enterprises</p>
-                            <p class="text-gray-800 dark:text-gray-400 text-sm">02/2021 – 04/2022</p>
+                            <p class="text-gray-400 text-sm">02/2021 – 04/2022</p>
                             <ul class="list-disc list-inside mt-2 space-y-1">
                                 <li>Managed digital assets and maintained organized records for marketing campaigns.</li>
                                 <li>Analyzed campaign data to provide insights for performance improvement.</li>
@@ -601,7 +592,7 @@
                     The 'href' attribute MUST be a relative path to a file in your project folder.
                     Example: href="./resume/Nayon_Resume.pdf"
                 -->
-                <a href="C:\Users\USER\Desktop\portfolio linux\CV - Md. Mostofa Nayon (1) (1).pdf" download="Nayon_Resume.pdf" class="btn-primary text-lg inline-flex items-center">
+                <a href="CV - Md. Mostofa Nayon (1) (1).pdf" download="Nayon_Resume.pdf" class="btn-primary text-lg inline-flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     $ sudo download resume.pdf
                 </a>
@@ -620,7 +611,7 @@
                 <span class="w-3 h-3 bg-red-500 rounded-full"></span>
                 <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
                 <span class="w-3 h-3 bg-green-500 rounded-full"></span>
-                <span class="flex-1 text-center text-sm text-gray-800 dark:text-gray-400 truncate max-w-[60%] mx-auto block">new-message.sh</span>
+                <span class="flex-1 text-center text-sm text-gray-400 truncate max-w-[60%] mx-auto block">new-message.sh</span>
             </div>
             <!-- 
                 CRITICAL FIX: 
@@ -666,14 +657,14 @@
             
             <div class="flex justify-center space-x-8">
                 <!-- EDITABLE: Add your social links -->
-                <a href="https://github.com/MMNayon00" target="_blank" class="text-gray-800 dark:text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="GitHub">
+                <a href="https://github.com/MMNayon00" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
                 </a>
-                <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" class="text-gray-800 dark:text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                 </a>
                 <!-- EDITABLE: Facebook -->
-                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" class="text-gray-800 dark:text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Facebook">
+                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"></path>
                     </svg>
@@ -683,8 +674,8 @@
     </section>
 
     <!-- ===== Footer ===== -->
-    <footer class="py-8 dark:bg-black/80 bg-gray-100 border-t border-accent/20">
-    <div class="container mx-auto px-6 text-center text-gray-800 dark:text-gray-400">
+    <footer class="py-8 bg-black/80 border-t border-accent/20">
+    <div class="container mx-auto px-6 text-center text-gray-400">
             <!-- EDITABLE: Copyright -->
             <p>
                 &copy; 2025 Md. Mostofa Nayon. All rights reserved.
@@ -867,5 +858,7 @@
 
 </body>
 </html>
+
+
 
 
