@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#111111">
     <title>Md. Mostofa Nayon - Portfolio</title>
     
     <!-- Theme preference: set class early to avoid flash -->
     <script>
+        // Force dark mode early to avoid flashes and ensure consistent mobile behavior
         (function () {
-            try { var stored = localStorage.getItem('theme'); } catch (e) { var stored = null; }
-            // Default to dark when no preference stored
-            var isDark = stored ? stored === 'dark' : true;
             var html = document.documentElement;
-            if (isDark) {
-                html.classList.add('dark');
-                html.classList.remove('light');
-            } else {
-                html.classList.remove('dark');
-                html.classList.add('light');
-            }
+            html.classList.add('dark');
+            html.classList.remove('light');
         })();
     </script>
 
@@ -41,51 +36,11 @@
             background-color: #111; /* Matte black for dark mode */
             color: #E0E0E0;
         }
+        /* Mobile hardening: prevent horizontal scroll and allow long strings to wrap */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        .long-text { overflow-wrap: anywhere; word-break: break-word; }
 
-        /* Light mode styles */
-        .light body {
-            background-color: #F8F9FA;
-            color: #212529; /* Softer dark text for light mode */
-        }
-        .light .terminal-window,
-        .light .terminal-card {
-            background-color: #FFFFFF;
-            border-color: #DEE2E6;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-        .light .terminal-header {
-            background-color: #F1F3F5;
-        }
-        .light .text-accent {
-            color: #0056b3; /* A deeper blue for light mode */
-        }
-        .light .border-accent {
-            border-color: #0056b3; /* Match new accent */
-        }
-        .light .shadow-accent {
-            box-shadow: 0 0 15px rgba(0, 86, 179, 0.3); /* Match new accent */
-        }
-        .light .hover\:shadow-accent-hover:hover {
-            box-shadow: 0 0 25px rgba(0, 86, 179, 0.5); /* Match new accent */
-        }
-        .light .btn-primary {
-            border-color: #0056b3; /* Match new accent */
-            color: #0056b3; /* Match new accent */
-        }
-        .light .btn-primary:hover {
-            background-color: #0056b3; /* Match new accent */
-            color: #FFFFFF;
-            box-shadow: 0 0 20px rgba(0, 86, 179, 0.4); /* Match new accent */
-        }
-        .light nav {
-            background-color: rgba(255, 255, 255, 0.85);
-        }
-
-        /* NEW: Specific light mode text color for about/projects */
-        .light #about .text-gray-900,
-        .light #projects .text-gray-900 {
-            color: #495057; /* A medium-dark gray for light mode text */
-        }
+        /* Removed light mode styles (dark-only site) */
 
         /* Accent Color */
         :root {
@@ -177,10 +132,10 @@
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 dark:bg-[#111] dark:text-gray-300">
+<body class="bg-[#111] text-gray-300">
 
     <!-- ===== Header / Navbar ===== -->
-    <nav class="fixed top-0 left-0 right-0 z-50 dark:bg-black/80 bg-white/80 backdrop-blur-md shadow-lg dark:shadow-accent/10 shadow-black/5 transition-all duration-300">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md shadow-lg shadow-black/5 transition-all duration-300">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <!-- Logo / Name -->
@@ -195,12 +150,6 @@
                     <a href="#projects" class="hover:text-accent transition-colors duration-300">/projects</a>
                     <a href="#resume" class="hover:text-accent transition-colors duration-300">/resume</a>
                     <a href="#contact" class="hover:text-accent transition-colors duration-300">/contact</a>
-                    <button id="theme-switcher" class="p-2 rounded-full hover:bg-accent/10" title="Switch Theme">
-                        <!-- Sun Icon (Light Mode) -->
-                        <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:hidden"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                        <!-- Moon Icon (Dark Mode) -->
-                        <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                    </button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -219,10 +168,6 @@
             <a href="#projects" class="block hover:text-accent transition-colors duration-300">/projects</a>
             <a href="#resume" class="block hover:text-accent transition-colors duration-300">/resume</a>
             <a href="#contact" class="block hover:text-accent transition-colors duration-300">/contact</a>
-            <button id="theme-switcher-mobile" class="w-full text-left p-2 rounded-lg hover:bg-accent/10 flex items-center" title="Switch Theme">
-                <span class="mr-2">sudo theme --switch</span>
-                <!-- Icons will be toggled by JS -->
-            </button>
         </div>
     </nav>
 
@@ -237,7 +182,7 @@
                 Example (relative path): src="./images/profile.jpg"
             -->
             <div class="relative w-40 h-40 mx-auto mb-8">
-                <img id="profile-pic" src="486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture" 
+                <img id="profile-pic" src="C:\Users\USER\Desktop\portfolio linux\486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture" 
                      onerror="this.onerror=null; this.src='https://placehold.co/160x160/00adef/111111?text=MMN';"
                      class="w-40 h-40 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
                 <button onclick="editImage('profile-pic')" class="absolute bottom-0 right-0 bg-accent text-black p-2 rounded-full hover:scale-110 transition-transform" title="Edit Profile Picture">
@@ -280,7 +225,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-1.jpg"
                     -->
-                    <img id="about-pic-1" src="487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1" 
+                    <img id="about-pic-1" src="C:\Users\USER\Desktop\portfolio linux\487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+1';"
                          class="rounded-lg object-cover w-full h-64 terminal-card">
                     <button onclick="editImage('about-pic-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 1">
@@ -293,7 +238,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-2.jpg"
                     -->
-                    <img id="about-pic-2" src="6064263805438463450.jpg" alt="About Me 2" 
+                    <img id="about-pic-2" src="C:\Users\USER\Desktop\portfolio linux\6064263805438463450.jpg" alt="About Me 2" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+2';"
                          class="rounded-lg object-cover w-full h-64 terminal-card">
                     <button onclick="editImage('about-pic-2')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 2">
@@ -310,7 +255,7 @@
                 <p class="text-xl text-accent mb-6">Aspiring Network Engineer & Cyber Security Expert</p>
                 
                 <!-- Description -->
-                <div class="text-base md:text-lg space-y-4 text-gray-900 dark:text-gray-300">
+                <div class="text-base md:text-lg space-y-4 text-gray-900 dark:text-gray-300 long-text">
                     <p>
                         A recently CCNA-certified Computer Science student with a strong passion for network engineering and cybersecurity. Proficient in configuring and managing network devices, with hands-on experience in both Windows and Linux Server environments.
                     </p>
@@ -344,7 +289,7 @@
     </section>
 
     <!-- ===== Skills Section ===== -->
-    <section id="skills" class="py-20 dark:bg-black/50 bg-gray-50/50 fade-in-section">
+    <section id="skills" class="py-20 bg-black/50 fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">$</span> /usr/bin/skills --list-all
@@ -441,7 +386,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-1.png"
                     -->
-                    <img id="project-img-1" src="Screenshot 2025-08-09 171212.png" alt="Project 1" 
+                    <img id="project-img-1" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-08-09 171212.png" alt="Project 1" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=VPN+Project';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 1 Image">
@@ -449,8 +394,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Virtual Private Network (VPN) Implementation Project</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Designed and implemented a secure VPN network with 25 routers, enabling seamless communication and successful connectivity tests between distant nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges, showcasing strong skills in routing, network design, and VPN configuration.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Virtual Private Network (VPN) Implementation Project</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a secure VPN network with 25 routers, enabling seamless communication and successful connectivity tests between distant nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges, showcasing strong skills in routing, network design, and VPN configuration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -470,7 +415,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="Screenshot 2025-09-01 003629.png" alt="Project 3" 
+                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-09-01 003629.png" alt="Project 3" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
@@ -478,8 +423,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">MikroTik Firewall Configuration</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Configured a virtualized MikroTik network with bridging and a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">MikroTik Firewall Configuration</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Configured a virtualized MikroTik network with bridging and a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -498,7 +443,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-3.png"
                     -->
-                    <img id="project-img-4" src="Screenshot 2025-10-31 234601.png" alt="Project 4" 
+                    <img id="project-img-4" src="C:\Users\USER\Desktop\portfolio linux\Screenshot 2025-10-31 234601.png" alt="Project 4" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Cancer+Detection+AI';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-4')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 4 Image">
@@ -506,8 +451,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Gallbladder Cancer Detection from Ultrasound Images Using Deep Learning</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Designed and implemented a deep learning system using transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test accuracy. Built using Python, PyTorch, and scikit-learn.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Gallbladder Cancer Detection from Ultrasound Images Using Deep Learning</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a deep learning system using transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test accuracy. Built using Python, PyTorch, and scikit-learn.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -525,7 +470,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3" 
+                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
@@ -533,8 +478,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Library Management System</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Developed a modern Library Management System using Python (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library operations. Implemented features for adding, searching, issuing, and updating books with a user-friendly graphical interface and secure database integration.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Library Management System</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Developed a modern Library Management System using Python (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library operations. Implemented features for adding, searching, issuing, and updating books with a user-friendly graphical interface and secure database integration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -552,7 +497,7 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                    <img id="project-img-3" src="456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3" 
+                    <img id="project-img-3" src="C:\Users\USER\Desktop\portfolio linux\456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3" 
                          onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
                          class="w-full h-48 object-cover">
                     <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
@@ -560,8 +505,8 @@
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2">Digital Door Lock using Arduino</h3>
-                    <p class="mb-4 text-gray-900 dark:text-gray-300">Designed and implemented a password-protected digital door lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time feedback on an LCD and controls door access based on password validation, demonstrating a smart and secure prototype for home or office use.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Digital Door Lock using Arduino</h3>
+                    <p class="mb-4 text-gray-900 dark:text-gray-300 long-text">Designed and implemented a password-protected digital door lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time feedback on an LCD and controls door access based on password validation, demonstrating a smart and secure prototype for home or office use.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
@@ -581,7 +526,7 @@
     </section>
     
     <!-- ===== Resume Section ===== -->
-    <section id="resume" class="py-20 dark:bg-black/50 bg-gray-50/50 fade-in-section">
+    <section id="resume" class="py-20 bg-black/50 fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">#</span> cat /home/mostofanayon/resume.txt
@@ -675,7 +620,7 @@
                 <span class="w-3 h-3 bg-red-500 rounded-full"></span>
                 <span class="w-3 h-3 bg-yellow-500 rounded-full"></span>
                 <span class="w-3 h-3 bg-green-500 rounded-full"></span>
-                <span class="flex-1 text-center text-sm text-gray-800 dark:text-gray-400">new-message.sh</span>
+                <span class="flex-1 text-center text-sm text-gray-800 dark:text-gray-400 truncate max-w-[60%] mx-auto block">new-message.sh</span>
             </div>
             <!-- 
                 CRITICAL FIX: 
@@ -713,7 +658,7 @@
         <!-- Contact Info & Socials -->
         <div class="text-center max-w-3xl mx-auto mt-12">
             <!-- EDITABLE: Email -->
-            <p class="text-lg mb-6">
+            <p class="text-lg mb-6 long-text">
                 Or contact me directly at: <a href="mailto:mostofanayon2001@gmail.com" class="text-accent hover:underline">mostofanayon2001@gmail.com</a>
                 <span class="mx-2">|</span>
                 Phone: <a href="tel:+8801310387836" class="text-accent hover:underline">+8801310387836</a>
@@ -771,55 +716,7 @@
                 });
             });
 
-            // --- Theme Switcher ---
-            const themeSwitcher = document.getElementById('theme-switcher');
-            const themeSwitcherMobile = document.getElementById('theme-switcher-mobile');
-            const themeIconLight = document.getElementById('theme-icon-light');
-            const themeIconDark = document.getElementById('theme-icon-dark');
-            const html = document.documentElement;
-
-            // Remove Tailwind dark: helper classes on icons to avoid conflicts and control via JS
-            if (themeIconLight) themeIconLight.classList.remove('dark:hidden');
-            if (themeIconDark) themeIconDark.classList.remove('dark:block');
-
-            function setTheme(isDark) {
-                html.classList.toggle('dark', isDark);
-                html.classList.toggle('light', !isDark);
-                try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
-
-                if (themeIconLight && themeIconDark) {
-                    if (isDark) {
-                        themeIconLight.classList.add('hidden');
-                        themeIconDark.classList.remove('hidden');
-                    } else {
-                        themeIconLight.classList.remove('hidden');
-                        themeIconDark.classList.add('hidden');
-                    }
-                }
-
-                if (themeSwitcherMobile) {
-                    themeSwitcherMobile.innerHTML = isDark
-                        ? `
-                        <span class="mr-2">sudo theme --switch (light)</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                        `
-                        : `
-                        <span class="mr-2">sudo theme --switch (dark)</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        `;
-                }
-            }
-
-            const toggleTheme = () => {
-                const newIsDark = !html.classList.contains('dark');
-                setTheme(newIsDark);
-            };
-
-            if (themeSwitcher) themeSwitcher.addEventListener('click', toggleTheme);
-            if (themeSwitcherMobile) themeSwitcherMobile.addEventListener('click', toggleTheme);
-
-            // Initialize UI to reflect current theme
-            setTheme(html.classList.contains('dark'));
+            // Theme switcher removed: site is dark-only for consistent mobile behavior
 
 
             // --- Typing Animation ---
