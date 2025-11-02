@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#111111">
     <title>Md. Mostofa Nayon - Portfolio</title>
     
     <!-- Theme preference: set class early to avoid flash -->
     <script>
+        // Force dark mode early to avoid flashes and ensure consistent mobile behavior
         (function () {
-            try { var stored = localStorage.getItem('theme'); } catch (e) { var stored = null; }
-            // Default to dark when no preference stored
-            var isDark = stored ? stored === 'dark' : true;
             var html = document.documentElement;
-            if (isDark) {
-                html.classList.add('dark');
-                html.classList.remove('light');
-            } else {
-                html.classList.remove('dark');
-                html.classList.add('light');
-            }
+            html.classList.add('dark');
+            html.classList.remove('light');
         })();
     </script>
 
@@ -45,50 +40,7 @@
         html, body { max-width: 100%; overflow-x: hidden; }
         .long-text { overflow-wrap: anywhere; word-break: break-word; }
 
-        /* Light mode styles */
-        .light body {
-            background-color: #F8F9FA;
-            color: #212529; /* Softer dark text for light mode */
-        }
-        .light .terminal-window,
-        .light .terminal-card {
-            background-color: #FFFFFF;
-            border-color: #DEE2E6;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-        .light .terminal-header {
-            background-color: #F1F3F5;
-        }
-        .light .text-accent {
-            color: #0056b3; /* A deeper blue for light mode */
-        }
-        .light .border-accent {
-            border-color: #0056b3; /* Match new accent */
-        }
-        .light .shadow-accent {
-            box-shadow: 0 0 15px rgba(0, 86, 179, 0.3); /* Match new accent */
-        }
-        .light .hover\:shadow-accent-hover:hover {
-            box-shadow: 0 0 25px rgba(0, 86, 179, 0.5); /* Match new accent */
-        }
-        .light .btn-primary {
-            border-color: #0056b3; /* Match new accent */
-            color: #0056b3; /* Match new accent */
-        }
-        .light .btn-primary:hover {
-            background-color: #0056b3; /* Match new accent */
-            color: #FFFFFF;
-            box-shadow: 0 0 20px rgba(0, 86, 179, 0.4); /* Match new accent */
-        }
-        .light nav {
-            background-color: rgba(255, 255, 255, 0.85);
-        }
-
-        /* NEW: Specific light mode text color for about/projects */
-        .light #about .text-gray-900,
-        .light #projects .text-gray-900 {
-            color: #495057; /* A medium-dark gray for light mode text */
-        }
+        /* Removed light mode styles (dark-only site) */
 
         /* Accent Color */
         :root {
@@ -180,10 +132,10 @@
         }
     </style>
 </head>
-<body class="bg-white text-gray-800 dark:bg-[#111] dark:text-gray-300">
+<body class="bg-[#111] text-gray-300">
 
     <!-- ===== Header / Navbar ===== -->
-    <nav class="fixed top-0 left-0 right-0 z-50 dark:bg-black/80 bg-white/80 backdrop-blur-md shadow-lg dark:shadow-accent/10 shadow-black/5 transition-all duration-300">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md shadow-lg shadow-black/5 transition-all duration-300">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <!-- Logo / Name -->
@@ -198,12 +150,6 @@
                     <a href="#projects" class="hover:text-accent transition-colors duration-300">/projects</a>
                     <a href="#resume" class="hover:text-accent transition-colors duration-300">/resume</a>
                     <a href="#contact" class="hover:text-accent transition-colors duration-300">/contact</a>
-                    <button id="theme-switcher" class="p-2 rounded-full hover:bg-accent/10" title="Switch Theme">
-                        <!-- Sun Icon (Light Mode) -->
-                        <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:hidden"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                        <!-- Moon Icon (Dark Mode) -->
-                        <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden dark:block"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                    </button>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -222,10 +168,6 @@
             <a href="#projects" class="block hover:text-accent transition-colors duration-300">/projects</a>
             <a href="#resume" class="block hover:text-accent transition-colors duration-300">/resume</a>
             <a href="#contact" class="block hover:text-accent transition-colors duration-300">/contact</a>
-            <button id="theme-switcher-mobile" class="w-full text-left p-2 rounded-lg hover:bg-accent/10 flex items-center" title="Switch Theme">
-                <span class="mr-2">sudo theme --switch</span>
-                <!-- Icons will be toggled by JS -->
-            </button>
         </div>
     </nav>
 
@@ -347,7 +289,7 @@
     </section>
 
     <!-- ===== Skills Section ===== -->
-    <section id="skills" class="py-20 dark:bg-black/50 bg-gray-50/50 fade-in-section">
+    <section id="skills" class="py-20 bg-black/50 fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">$</span> /usr/bin/skills --list-all
@@ -584,7 +526,7 @@
     </section>
     
     <!-- ===== Resume Section ===== -->
-    <section id="resume" class="py-20 dark:bg-black/50 bg-gray-50/50 fade-in-section">
+    <section id="resume" class="py-20 bg-black/50 fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">#</span> cat /home/mostofanayon/resume.txt
@@ -774,55 +716,7 @@
                 });
             });
 
-            // --- Theme Switcher ---
-            const themeSwitcher = document.getElementById('theme-switcher');
-            const themeSwitcherMobile = document.getElementById('theme-switcher-mobile');
-            const themeIconLight = document.getElementById('theme-icon-light');
-            const themeIconDark = document.getElementById('theme-icon-dark');
-            const html = document.documentElement;
-
-            // Remove Tailwind dark: helper classes on icons to avoid conflicts and control via JS
-            if (themeIconLight) themeIconLight.classList.remove('dark:hidden');
-            if (themeIconDark) themeIconDark.classList.remove('dark:block');
-
-            function setTheme(isDark) {
-                html.classList.toggle('dark', isDark);
-                html.classList.toggle('light', !isDark);
-                try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
-
-                if (themeIconLight && themeIconDark) {
-                    if (isDark) {
-                        themeIconLight.classList.add('hidden');
-                        themeIconDark.classList.remove('hidden');
-                    } else {
-                        themeIconLight.classList.remove('hidden');
-                        themeIconDark.classList.add('hidden');
-                    }
-                }
-
-                if (themeSwitcherMobile) {
-                    themeSwitcherMobile.innerHTML = isDark
-                        ? `
-                        <span class="mr-2">sudo theme --switch (light)</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                        `
-                        : `
-                        <span class="mr-2">sudo theme --switch (dark)</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                        `;
-                }
-            }
-
-            const toggleTheme = () => {
-                const newIsDark = !html.classList.contains('dark');
-                setTheme(newIsDark);
-            };
-
-            if (themeSwitcher) themeSwitcher.addEventListener('click', toggleTheme);
-            if (themeSwitcherMobile) themeSwitcherMobile.addEventListener('click', toggleTheme);
-
-            // Initialize UI to reflect current theme
-            setTheme(html.classList.contains('dark'));
+            // Theme switcher removed: site is dark-only for consistent mobile behavior
 
 
             // --- Typing Animation ---
