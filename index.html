@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" class="dark"> <!-- Default to dark mode -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#111111">
-    <meta name="description" content="Md. Mostofa Nayon - Aspiring Network Engineer & Cyber Security Expert. CCNA certified professional specializing in network engineering, ethical hacking, and cybersecurity.">
-    <meta name="keywords" content="Network Engineer, Cyber Security, CCNA, Ethical Hacking, Portfolio, Md. Mostofa Nayon">
+    <meta name="description"
+        content="Md. Mostofa Nayon - Aspiring Network Engineer & Cyber Security Expert. CCNA certified professional specializing in network engineering, ethical hacking, and cybersecurity.">
+    <meta name="keywords"
+        content="Network Engineer, Cyber Security, CCNA, Ethical Hacking, Portfolio, Md. Mostofa Nayon">
     <meta name="author" content="Md. Mostofa Nayon">
-    
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Md. Mostofa Nayon - Portfolio">
     <meta property="og:description" content="Aspiring Network Engineer & Cyber Security Expert">
     <meta property="og:url" content="">
-    
-    <!-- Apple Touch Icon -->
+
+    <!-- Web App & Apple Touch Icons -->
     <link rel="apple-touch-icon" href="486032278_2701671483354236_7726345450350157977_n.jpg">
-    
+    <link rel="icon" type="image/png" href="favicon.png">
+
     <title>Md. Mostofa Nayon - Portfolio</title>
-    
+
     <!-- Theme preference: set class early to avoid flash -->
     <script>
         // Force dark mode early to avoid flashes and ensure consistent mobile behavior
@@ -36,33 +40,40 @@
         window.tailwind.config = { darkMode: 'class' };
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts: JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* Base styles */
         * {
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
             font-family: 'JetBrains Mono', monospace;
-            background-color: #111; /* Matte black for dark mode */
+            background-color: #111;
+            /* Matte black for dark mode */
             color: #E0E0E0;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-        
+
         /* Mobile hardening: prevent horizontal scroll and allow long strings to wrap */
-        html, body { 
-            max-width: 100%; 
+        html,
+        body {
+            max-width: 100%;
             overflow-x: hidden;
-            scroll-padding-top: 80px; /* Account for fixed navbar */
+            scroll-padding-top: 80px;
+            /* Account for fixed navbar */
         }
-        .long-text { overflow-wrap: anywhere; word-break: break-word; }
+
+        .long-text {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
 
         /* Improved image loading */
         img {
@@ -82,13 +93,16 @@
         html {
             scroll-behavior: smooth;
         }
-        
+
         /* Reduced motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
             }
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -96,18 +110,33 @@
         }
 
         /* Accent classes */
-        .text-accent { color: var(--accent-color); }
-        .border-accent { border-color: var(--accent-color); }
-        .bg-accent { background-color: var(--accent-color); }
-        .shadow-accent { box-shadow: 0 0 15px rgba(0, 173, 239, 0.5); }
-        .hover\:shadow-accent-hover:hover { box-shadow: 0 0 25px rgba(0, 173, 239, 0.8); }
-        
+        .text-accent {
+            color: var(--accent-color);
+        }
+
+        .border-accent {
+            border-color: var(--accent-color);
+        }
+
+        .bg-accent {
+            background-color: var(--accent-color);
+        }
+
+        .shadow-accent {
+            box-shadow: 0 0 15px rgba(0, 173, 239, 0.5);
+        }
+
+        .hover\:shadow-accent-hover:hover {
+            box-shadow: 0 0 25px rgba(0, 173, 239, 0.8);
+        }
+
         /* Terminal-like button */
         .btn-primary {
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
             padding: 0.5rem 1rem;
-            border-radius: 0.375rem; /* rounded-md */
+            border-radius: 0.375rem;
+            /* rounded-md */
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
@@ -116,6 +145,7 @@
             -webkit-user-select: none;
             user-select: none;
         }
+
         .btn-primary:hover,
         .btn-primary:focus {
             background-color: var(--accent-color);
@@ -124,10 +154,11 @@
             outline: 2px solid var(--accent-color);
             outline-offset: 2px;
         }
+
         .btn-primary:active {
             transform: scale(0.98);
         }
-        
+
         /* Typing cursor */
         .cursor {
             display: inline-block;
@@ -137,11 +168,19 @@
             margin-left: 5px;
             animation: blink 1s infinite;
         }
+
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
         }
-        
+
         /* Terminal window style */
         .terminal-window {
             background-color: rgba(16, 16, 16, 0.6);
@@ -150,6 +189,7 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
+
         .terminal-header {
             background-color: rgba(40, 40, 40, 0.8);
             border-top-left-radius: 0.5rem;
@@ -157,11 +197,13 @@
             padding: 0.5rem 1rem;
             border-bottom: 1px solid rgba(0, 173, 239, 0.3);
         }
+
         .terminal-card {
             background-color: rgba(20, 20, 20, 0.7);
             border: 1px solid rgba(0, 173, 239, 0.2);
             transition: all 0.3s ease;
         }
+
         .terminal-card:hover {
             border-color: rgba(0, 173, 239, 0.6);
             box-shadow: 0 0 20px rgba(0, 173, 239, 0.3);
@@ -180,6 +222,7 @@
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
+
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
@@ -190,16 +233,17 @@
             color: var(--accent-color);
             font-weight: bold;
         }
-        
+
         /* Touch-friendly link and button sizing */
-        a, button {
+        a,
+        button {
             min-height: 44px;
             min-width: 44px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         /* Better focus visibility for keyboard navigation */
         a:focus-visible,
         button:focus-visible,
@@ -208,31 +252,31 @@
             outline: 2px solid var(--accent-color);
             outline-offset: 2px;
         }
-        
+
         /* Performance: GPU acceleration for animations */
         .fade-in-section,
         .terminal-card,
         .btn-primary {
             will-change: transform, opacity;
         }
-        
+
         /* Mobile-specific optimizations */
         @media (max-width: 768px) {
             .cursor {
                 width: 8px;
                 height: 1rem;
             }
-            
+
             /* Reduce blur for better mobile performance */
             .terminal-window {
                 backdrop-filter: blur(5px);
             }
-            
+
             nav {
                 backdrop-filter: blur(5px);
             }
         }
-        
+
         /* Tablet optimizations */
         @media (min-width: 768px) and (max-width: 1024px) {
             .container {
@@ -240,7 +284,7 @@
                 padding-right: 2rem;
             }
         }
-        
+
         /* Large screen optimizations */
         @media (min-width: 1920px) {
             .container {
@@ -249,17 +293,19 @@
         }
     </style>
 </head>
+
 <body class="bg-[#111] text-gray-300">
 
     <!-- ===== Header / Navbar ===== -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md shadow-lg shadow-black/5 transition-all duration-300">
+    <nav
+        class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md shadow-lg shadow-black/5 transition-all duration-300">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <!-- Logo / Name -->
                 <a href="#home" class="text-2xl font-bold text-accent">
                     root@mostofanayon:~#
                 </a>
-                
+
                 <!-- Desktop Nav -->
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#about" class="hover:text-accent transition-colors duration-300">/about</a>
@@ -268,16 +314,22 @@
                     <a href="#resume" class="hover:text-accent transition-colors duration-300">/resume</a>
                     <a href="#contact" class="hover:text-accent transition-colors duration-300">/contact</a>
                 </div>
-                
+
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-6 h-6">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
-        
+
         <!-- Mobile Nav (Hidden) -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
             <a href="#about" class="block hover:text-accent transition-colors duration-300">/about</a>
@@ -299,11 +351,17 @@
                 Example (relative path): src="./images/profile.jpg"
             -->
             <div class="relative w-40 h-40 mx-auto mb-8">
-             <img id="profile-pic" src="486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture" 
-                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/00adef/111111?text=MMN';"
-                     class="w-40 h-40 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
-                <button onclick="editImage('profile-pic')" class="absolute bottom-0 right-0 bg-accent text-black p-2 rounded-full hover:scale-110 transition-transform" title="Edit Profile Picture">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                <img id="profile-pic" src="486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture"
+                    onerror="this.onerror=null; this.src='https://placehold.co/160x160/00adef/111111?text=MMN';"
+                    class="w-40 h-40 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
+                <button onclick="editImage('profile-pic')"
+                    class="absolute bottom-0 right-0 bg-accent text-black p-2 rounded-full hover:scale-110 transition-transform"
+                    title="Edit Profile Picture">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                    </svg>
                 </button>
             </div>
 
@@ -311,7 +369,7 @@
             <div class="text-xl md:text-3xl font-bold mb-8 h-20 md:h-10">
                 <span id="typing-text"></span><span class="cursor"></span>
             </div>
-            
+
             <!-- Buttons -->
             <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
                 <a href="#about" class="btn-primary w-full md:w-auto">
@@ -332,7 +390,7 @@
         <h2 class="text-4xl font-bold text-center mb-12">
             <span class="text-accent">#</span> whoami<span class="cursor"></span>
         </h2>
-        
+
         <div class="flex flex-col lg:flex-row items-center gap-12">
             <!-- Images -->
             <div class="w-full lg:w-1/3 space-y-6">
@@ -342,11 +400,17 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-1.jpg"
                     -->
-                <img id="about-pic-1" src="487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+1';"
-                         class="rounded-lg object-cover w-full h-64 terminal-card">
-                    <button onclick="editImage('about-pic-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                    <img id="about-pic-1" src="487878504_2711646902356694_2597164575442286891_n.jpg" alt="About Me 1"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+1';"
+                        class="rounded-lg object-cover w-full h-64 terminal-card">
+                    <button onclick="editImage('about-pic-1')"
+                        class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                        title="Edit Image 1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                        </svg>
                     </button>
                 </div>
                 <div class="relative group">
@@ -355,50 +419,86 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/about-2.jpg"
                     -->
-                <img id="about-pic-2" src="6064263805438463450.jpg" alt="About Me 2" 
-                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+2';"
-                         class="rounded-lg object-cover w-full h-64 terminal-card">
-                    <button onclick="editImage('about-pic-2')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Image 2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                    <img id="about-pic-2" src="6064263805438463450.jpg" alt="About Me 2"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/eeeeee?text=About+Image+2';"
+                        class="rounded-lg object-cover w-full h-64 terminal-card">
+                    <button onclick="editImage('about-pic-2')"
+                        class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                        title="Edit Image 2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                        </svg>
                     </button>
                 </div>
             </div>
-            
+
             <!-- Bio -->
             <div class="w-full lg:w-2/3">
                 <!-- Name -->
                 <h3 class="text-3xl font-bold mb-2">Md. Mostofa Nayon</h3>
                 <!-- Title -->
                 <p class="text-xl text-accent mb-6">Aspiring Network Engineer & Cyber Security Expert</p>
-                
+
                 <!-- Description -->
                 <div class="text-base md:text-lg space-y-4 text-gray-300 long-text">
                     <p>
-                        A recently CCNA-certified Computer Science student with a strong passion for network engineering and cybersecurity. Proficient in configuring and managing network devices, with hands-on experience in both Windows and Linux Server environments.
+                        A recently CCNA-certified Computer Science student with a strong passion for network engineering
+                        and cybersecurity. Proficient in configuring and managing network devices, with hands-on
+                        experience in both Windows and Linux Server environments.
                     </p>
                     <p>
-                        Eager to apply technical knowledge and problem-solving skills to secure and optimize network infrastructure.
+                        Eager to apply technical knowledge and problem-solving skills to secure and optimize network
+                        infrastructure.
                     </p>
                 </div>
 
                 <!-- Social Links -->
                 <div class="flex space-x-6 mt-8">
                     <!-- EDITABLE: Add your social links -->
-                    <a href="https://github.com/MMNayon00" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="GitHub">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    </a>
-                    <!-- EDITABLE: Facebook -->
-                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Facebook">
-                        <!-- Facebook mark -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"></path>
+                    <a href="https://github.com/MMNayon00" target="_blank"
+                        class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
+                        title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
                         </svg>
                     </a>
-                    <a href="mailto:mostofanayon2001@gmail.com" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Email">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank"
+                        class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
+                        title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <!-- EDITABLE: Facebook -->
+                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank"
+                        class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
+                        title="Facebook">
+                        <!-- Facebook mark -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                            fill="currentColor" aria-hidden="true">
+                            <path
+                                d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="mailto:mostofanayon2001@gmail.com"
+                        class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
+                        title="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -411,7 +511,7 @@
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">$</span> /usr/bin/skills --list-all<span class="cursor"></span>
             </h2>
-            
+
             <div class="terminal-window overflow-hidden shadow-accent">
                 <div class="terminal-header flex items-center space-x-2">
                     <span class="w-3 h-3 bg-red-500 rounded-full"></span>
@@ -419,7 +519,7 @@
                     <span class="w-3 h-3 bg-green-500 rounded-full"></span>
                 </div>
                 <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
+
                     <!-- EDITABLE: Skills Category 1 -->
                     <div>
                         <h3 class="text-xl font-bold text-accent mb-3">Networking & Systems</h3>
@@ -434,7 +534,7 @@
                             <li>Cisco Packet Tracer</li>
                         </ul>
                     </div>
-                    
+
                     <!-- EDITABLE: Skills Category 2 -->
                     <div>
                         <h3 class="text-xl font-bold text-accent mb-3">Ethical Hacking & Recon</h3>
@@ -475,13 +575,10 @@
                 </h3>
                 <!-- Composite skills banner provided by user -->
                 <div class="w-full flex justify-center mb-6">
-                    <img
-                        src="https://skills.syvixor.com/api/icons?perline=8&i=cpp,c,java,python,html,css,javascript,androidstudio,flutter,dart,linux,kalilinux,metasploit,windows,gitbash,github,git,cisco,canva,capcut,figma,mysql,ubuntu,adobelightroom"
-                        alt="Skills icons"
-                        loading="lazy"
+                    <img src="https://skills.syvixor.com/api/icons?perline=8&i=cpp,c,java,python,html,css,javascript,androidstudio,flutter,dart,linux,kalilinux,metasploit,windows,gitbash,github,git,cisco,canva,capcut,figma,mysql,ubuntu,adobelightroom"
+                        alt="Skills icons" loading="lazy"
                         class="max-w-full h-auto rounded-md shadow-black/10 dark:shadow-accent/10"
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x120/eeeeee/111111?text=Skills+Icons';"
-                    />
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x120/eeeeee/111111?text=Skills+Icons';" />
                 </div>
             </div>
         </div>
@@ -492,9 +589,9 @@
         <h2 class="text-4xl font-bold text-center mb-12">
             <span class="text-accent">#</span> /var/www/projects<span class="cursor"></span>
         </h2>
-        
-    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
+
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
             <!-- EDITABLE: Project 1 -->
             <div class="terminal-card project-card rounded-lg overflow-hidden flex flex-col">
                 <div class="relative group">
@@ -503,25 +600,36 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-1.png"
                     -->
-                <img id="project-img-1" src="Screenshot 2025-08-09 171212.png" alt="Project 1" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=VPN+Project';"
-                         class="w-full h-48 object-cover">
-                    <button onclick="editImage('project-img-1')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 1 Image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                    <img id="project-img-1" src="Screenshot 2025-08-09 171212.png" alt="Project 1"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=VPN+Project';"
+                        class="w-full h-48 object-cover">
+                    <button onclick="editImage('project-img-1')"
+                        class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                        title="Edit Project 1 Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                        </svg>
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Virtual Private Network (VPN) Implementation Project</h3>
-                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a secure VPN network with 25 routers, enabling seamless communication and successful connectivity tests between distant nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges, showcasing strong skills in routing, network design, and VPN configuration.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Virtual Private Network (VPN)
+                        Implementation Project</h3>
+                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a secure VPN network with 25
+                        routers, enabling seamless communication and successful connectivity tests between distant
+                        nodes. Configured main (10.0.0.0–35.0.0.0) and VPN (192.168.10.0–192.168.25.0) ranges,
+                        showcasing strong skills in routing, network design, and VPN configuration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/VPN-Network-Implementation-Project" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/VPN-Network-Implementation-Project" target="_blank"
+                        class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
-            
 
-            
+
+
             <!-- EDITABLE: Project 2 (Add more by copying this block) -->
             <div class="terminal-card project-card rounded-lg overflow-hidden flex flex-col">
                 <div class="relative group">
@@ -530,24 +638,33 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                <img id="project-img-3" src="Screenshot 2025-09-01 003629.png" alt="Project 3" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
-                         class="w-full h-48 object-cover">
-                    <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                    <img id="project-img-3" src="Screenshot 2025-09-01 003629.png" alt="Project 3"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=MikroTik+Firewall';"
+                        class="w-full h-48 object-cover">
+                    <button onclick="editImage('project-img-3')"
+                        class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                        title="Edit Project 3 Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                        </svg>
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">MikroTik Firewall Configuration</h3>
-                    <p class="mb-4 text-gray-300 long-text">Configured a virtualized MikroTik network with bridging and a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
+                    <p class="mb-4 text-gray-300 long-text">Configured a virtualized MikroTik network with bridging and
+                        a security firewall. Utilized Layer-7 protocols to filter traffic (e.g., block YouTube) and
+                        optimized firewall rules. (Tech: MikroTik RouterOS, Winbox)</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/MikroTik-Router-Configuration-for-a-Small-Network/tree/main" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/MikroTik-Router-Configuration-for-a-Small-Network/tree/main"
+                        target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
-            
+
             <!-- EDITABLE: Project 3 (Add more by copying this block) -->
             <div class="terminal-card project-card rounded-lg overflow-hidden flex flex-col">
                 <div class="relative group">
@@ -556,20 +673,31 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-3.png"
                     -->
-                <img id="project-img-4" src="Screenshot 2025-10-31 234601.png" alt="Project 4" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Cancer+Detection+AI';"
-                         class="w-full h-48 object-cover">
-                    <button onclick="editImage('project-img-4')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 4 Image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                    <img id="project-img-4" src="Screenshot 2025-10-31 234601.png" alt="Project 4"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Cancer+Detection+AI';"
+                        class="w-full h-48 object-cover">
+                    <button onclick="editImage('project-img-4')"
+                        class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                        title="Edit Project 4 Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                        </svg>
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Gallbladder Cancer Detection from Ultrasound Images Using Deep Learning</h3>
-                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a deep learning system using transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test accuracy. Built using Python, PyTorch, and scikit-learn.</p>
+                    <h3 class="text-2xl font-bold text-accent mb-2 long-text">Gallbladder Cancer Detection from
+                        Ultrasound Images Using Deep Learning</h3>
+                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a deep learning system using
+                        transfer learning (ResNet, EfficientNet, MobileNet) to classify gallbladder conditions from
+                        ultrasound images. Applied ensemble learning to improve accuracy, achieving 89.21% test
+                        accuracy. Built using Python, PyTorch, and scikit-learn.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/Gallblader-Cancer-Detection-DL" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/Gallblader-Cancer-Detection-DL" target="_blank"
+                        class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -581,20 +709,30 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                <img id="project-img-3" src="444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Library+System';"
-                         class="w-full h-48 object-cover">
-                    <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                    <img id="project-img-3" src="444016922-890c7ae5-8e1c-479e-b634-c751fc701248.jpeg" alt="Project 3"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Library+System';"
+                        class="w-full h-48 object-cover">
+                    <button onclick="editImage('project-img-3')"
+                        class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                        title="Edit Project 3 Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                        </svg>
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">Library Management System</h3>
-                    <p class="mb-4 text-gray-300 long-text">Developed a modern Library Management System using Python (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library operations. Implemented features for adding, searching, issuing, and updating books with a user-friendly graphical interface and secure database integration.</p>
+                    <p class="mb-4 text-gray-300 long-text">Developed a modern Library Management System using Python
+                        (Tkinter) and MySQL to manage books, track borrow/return records, and enhance library
+                        operations. Implemented features for adding, searching, issuing, and updating books with a
+                        user-friendly graphical interface and secure database integration.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/Library-MS-Project" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/Library-MS-Project" target="_blank"
+                        class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -606,39 +744,50 @@
                         The 'src' attribute MUST be a relative path or public URL.
                         Example: src="./images/project-2.png"
                     -->
-                <img id="project-img-3" src="456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3" 
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Arduino+Door+Lock';"
-                         class="w-full h-48 object-cover">
-                    <button onclick="editImage('project-img-3')" class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all" title="Edit Project 3 Image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+                    <img id="project-img-3" src="456683190-072534a9-74ff-406d-9724-3ca997a7243c.jpg" alt="Project 3"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/00adef?text=Arduino+Door+Lock';"
+                        class="w-full h-48 object-cover">
+                    <button onclick="editImage('project-img-3')"
+                        class="absolute top-2 right-2 bg-accent text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                        title="Edit Project 3 Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path>
+                        </svg>
                     </button>
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-2xl font-bold text-accent mb-2 long-text">Digital Door Lock using Arduino</h3>
-                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a password-protected digital door lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time feedback on an LCD and controls door access based on password validation, demonstrating a smart and secure prototype for home or office use.</p>
+                    <p class="mb-4 text-gray-300 long-text">Designed and implemented a password-protected digital door
+                        lock system using Arduino Nano, keypad, LCD, and servo motor. The system provides real-time
+                        feedback on an LCD and controls door access based on password validation, demonstrating a smart
+                        and secure prototype for home or office use.</p>
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/DoorLock-Arduino-Project" target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/DoorLock-Arduino-Project" target="_blank"
+                        class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
 
         </div>
         <div class="text-center mt-8">
-            <button id="load-more-projects" class="btn-primary text-sm inline-flex items-center justify-center px-6 py-2">
+            <button id="load-more-projects"
+                class="btn-primary text-sm inline-flex items-center justify-center px-6 py-2">
                 Load More
             </button>
         </div>
     </section>
-    
+
     <!-- ===== Resume Section ===== -->
     <section id="resume" class="py-20 bg-black/50 fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">#</span> cat /home/mostofanayon/resume.txt<span class="cursor"></span>
             </h2>
-            
+
             <div class="max-w-4xl mx-auto space-y-12">
                 <!-- EDITABLE: Education -->
                 <div>
@@ -671,8 +820,10 @@
                             <p class="text-accent mb-1">Car Kunjo</p>
                             <p class="text-gray-400 text-sm">05/2022 – 01/2024</p>
                             <ul class="list-disc list-inside mt-2 space-y-1">
-                                <li>Provided Tier 1 technical support and troubleshooting for customer issues, resolving inquiries with a 95% satisfaction rate.</li>
-                                <li>Collaborated with the technical team to diagnose and escalate complex network-related problems.</li>
+                                <li>Provided Tier 1 technical support and troubleshooting for customer issues, resolving
+                                    inquiries with a 95% satisfaction rate.</li>
+                                <li>Collaborated with the technical team to diagnose and escalate complex
+                                    network-related problems.</li>
                             </ul>
                         </div>
                         <div>
@@ -680,7 +831,8 @@
                             <p class="text-accent mb-1">Hakim Enterprises</p>
                             <p class="text-gray-400 text-sm">02/2021 – 04/2022</p>
                             <ul class="list-disc list-inside mt-2 space-y-1">
-                                <li>Managed digital assets and maintained organized records for marketing campaigns.</li>
+                                <li>Managed digital assets and maintained organized records for marketing campaigns.
+                                </li>
                                 <li>Analyzed campaign data to provide insights for performance improvement.</li>
                             </ul>
                         </div>
@@ -700,7 +852,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Download Button -->
             <div class="text-center mt-16">
                 <!-- 
@@ -708,8 +860,15 @@
                     The 'href' attribute MUST be a relative path to a file in your project folder.
                     Example: href="./resume/Nayon_Resume.pdf"
                 -->
-                <a href="resume_of_md__mostofa_nayon-2.pdf" download="Nayon_Resume.pdf" class="btn-primary text-lg inline-flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <a href="resume_of_md__mostofa_nayon-2.pdf" download="Nayon_Resume.pdf"
+                    class="btn-primary text-lg inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="mr-2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
                     $ sudo download resume.pdf
                 </a>
             </div>
@@ -721,7 +880,7 @@
         <h2 class="text-4xl font-bold text-center mb-12">
             <span class="text-accent">$</span> /bin/contact --send<span class="cursor"></span>
         </h2>
-        
+
         <div class="terminal-window max-w-3xl mx-auto shadow-accent">
             <div class="terminal-header flex items-center space-x-2">
                 <span class="w-3 h-3 bg-red-500 rounded-full"></span>
@@ -739,17 +898,17 @@
                 <div>
                     <label for="name" class="block text-accent mb-2">$ user@host:</label>
                     <input type="text" id="name" name="name" required autocomplete="name"
-                           class="w-full bg-transparent border-b-2 border-accent/50 focus:border-accent focus:outline-none focus:ring-0 py-2 transition-colors duration-300">
+                        class="w-full bg-transparent border-b-2 border-accent/50 focus:border-accent focus:outline-none focus:ring-0 py-2 transition-colors duration-300">
                 </div>
                 <div>
                     <label for="email" class="block text-accent mb-2">$ email:</label>
                     <input type="email" id="email" name="email" required autocomplete="email"
-                           class="w-full bg-transparent border-b-2 border-accent/50 focus:border-accent focus:outline-none focus:ring-0 py-2 transition-colors duration-300">
+                        class="w-full bg-transparent border-b-2 border-accent/50 focus:border-accent focus:outline-none focus:ring-0 py-2 transition-colors duration-300">
                 </div>
                 <div>
                     <label for="message" class="block text-accent mb-2">$ message:</label>
                     <textarea id="message" name="message" rows="5" required
-                              class="w-full bg-transparent border-2 border-accent/50 rounded-md focus:border-accent focus:outline-none focus:ring-0 p-2 transition-colors duration-300"></textarea>
+                        class="w-full bg-transparent border-2 border-accent/50 rounded-md focus:border-accent focus:outline-none focus:ring-0 p-2 transition-colors duration-300"></textarea>
                 </div>
                 <!-- Honeypot (spam trap) - leave empty -->
                 <input type="text" name="_hp" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
@@ -764,28 +923,48 @@
                 <p id="contact-status" class="mt-2 text-sm"></p>
             </form>
         </div>
-        
+
         <!-- Contact Info & Socials -->
         <div class="text-center max-w-3xl mx-auto mt-12">
             <!-- EDITABLE: Email -->
             <p class="text-lg mb-6 long-text">
-                Or contact me directly at: <a href="mailto:mostofanayon2001@gmail.com" class="text-accent hover:underline">mostofanayon2001@gmail.com</a>
+                Or contact me directly at: <a href="mailto:mostofanayon2001@gmail.com"
+                    class="text-accent hover:underline">mostofanayon2001@gmail.com</a>
                 <span class="mx-2">|</span>
                 Phone: <a href="tel:+8801301994411" class="text-accent hover:underline">+8801301994411</a>
             </p>
-            
+
             <div class="flex justify-center space-x-8">
                 <!-- EDITABLE: Add your social links -->
-                <a href="https://github.com/MMNayon00" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="GitHub">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <a href="https://github.com/MMNayon00" target="_blank"
+                    class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
+                    title="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                        </path>
+                    </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank"
+                    class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
+                    title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
                 </a>
                 <!-- EDITABLE: Facebook -->
-                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125" title="Facebook">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z"></path>
+                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank"
+                    class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
+                    title="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12z">
+                        </path>
                     </svg>
                 </a>
             </div>
@@ -794,7 +973,7 @@
 
     <!-- ===== Footer ===== -->
     <footer class="py-8 bg-black/80 border-t border-accent/20">
-    <div class="container mx-auto px-6 text-center text-gray-400">
+        <div class="container mx-auto px-6 text-center text-gray-400">
             <!-- EDITABLE: Copyright -->
             <p>
                 &copy; 2025 Md. Mostofa Nayon. All rights reserved.
@@ -839,10 +1018,10 @@
             let lineIndex = 0;
             let charIndex = 0;
             let isDeleting = false;
-            
+
             function type() {
                 const currentLine = textLines[lineIndex];
-                
+
                 if (isDeleting) {
                     // Deleting
                     typingText.textContent = currentLine.substring(0, charIndex - 1);
@@ -894,11 +1073,11 @@
             let scrollTimeout;
             function setActiveNavLink() {
                 let currentSection = '';
-                
+
                 sectionElements.forEach(section => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.clientHeight;
-                    
+
                     if (window.scrollY >= sectionTop - 100) {
                         currentSection = section.getAttribute('id');
                     }
@@ -918,12 +1097,12 @@
                 }
                 scrollTimeout = window.requestAnimationFrame(setActiveNavLink);
             }, { passive: true });
-            
+
             window.addEventListener('load', setActiveNavLink);
 
             // Also set active on click
             navLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     navLinks.forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
                 });
@@ -967,23 +1146,23 @@
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     if (!statusEl || !submitBtn) return;
-                    
+
                     // Set reply-to field with user's email
                     const replyToField = document.getElementById('replyto-field');
                     const emailField = document.getElementById('email');
                     if (replyToField && emailField) {
                         replyToField.value = emailField.value;
                     }
-                    
+
                     const originalBtn = submitBtn.textContent;
                     submitBtn.disabled = true;
                     submitBtn.textContent = '$ sending...';
                     submitBtn.setAttribute('aria-busy', 'true');
                     statusEl.textContent = '';
                     statusEl.className = 'mt-2 text-sm';
-                    
+
                     const formData = new FormData(contactForm);
-                    
+
                     try {
                         const resp = await fetch(contactForm.action, {
                             method: 'POST',
@@ -1018,7 +1197,7 @@
                     }
                 });
             }
-            
+
             // --- Performance: Lazy load images ---
             if ('IntersectionObserver' in window) {
                 const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -1050,15 +1229,5 @@
     </script>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
