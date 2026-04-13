@@ -31,6 +31,12 @@
             var html = document.documentElement;
             html.classList.add('dark');
             html.classList.remove('light');
+            
+            // Force scroll to top on reload/load
+            if (history.scrollRestoration) {
+                history.scrollRestoration = 'manual';
+            }
+            window.scrollTo(0, 0);
         })();
     </script>
 
@@ -47,69 +53,374 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Base styles */
+        /* =============================================
+           CRYSTAL GLASS EFFECT - Full Glassmorphism
+           ============================================= */
+
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --accent-color: #00d4ff;
+            --accent-2: #a855f7;
+            --accent-3: #ec4899;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-bg-hover: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-border-bright: rgba(0, 212, 255, 0.5);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
         * {
             -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
         }
 
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: #111;
-            /* Matte black for dark mode */
-            color: #E0E0E0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Mobile hardening: prevent horizontal scroll and allow long strings to wrap */
         html,
         body {
             max-width: 100%;
             overflow-x: hidden;
             scroll-padding-top: 80px;
-            /* Account for fixed navbar */
         }
 
-        .long-text {
-            overflow-wrap: anywhere;
-            word-break: break-word;
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #020818 0%, #050d1f 40%, #080618 70%, #030c1a 100%);
+            color: #e2e8f0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+            min-height: 100vh;
         }
 
-        /* Improved image loading */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        /* ── Space nebula glows (very subtle) ── */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(160px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+            animation: orb-drift 30s ease-in-out infinite alternate;
         }
 
-        /* Removed light mode styles (dark-only site) */
-
-        /* Accent Color */
-        :root {
-            --accent-color: #00adef;
+        body::before {
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, #1a0a3e 0%, #0d1a4a 60%, transparent 100%);
+            top: -200px;
+            left: -250px;
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        body::after {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, #0a1f3e 0%, #1a0a2e 60%, transparent 100%);
+            bottom: -200px;
+            right: -250px;
+            animation-delay: -15s;
         }
 
-        /* Reduced motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
+        /* Subtle milky way mid glow */
+        #orb-mid {
+            position: fixed;
+            width: 600px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(60, 30, 120, 0.18) 0%, rgba(20, 10, 60, 0.08) 60%, transparent 100%);
+            filter: blur(60px);
+            opacity: 1;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes orb-drift {
+            0% {
+                transform: translate(0, 0) scale(1);
             }
 
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+            50% {
+                transform: translate(40px, 20px) scale(1.05);
+            }
+
+            100% {
+                transform: translate(-20px, 40px) scale(0.97);
             }
         }
 
-        /* Accent classes */
+        /* ── Shooting Stars ── */
+        .shooting-star {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 4px white);
+            pointer-events: none;
+            z-index: 0;
+            animation: shoot linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scaleX(1);
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            85% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scaleX(1);
+            }
+        }
+
+        /* Ensure content sits above background */
+        nav,
+        section,
+        footer,
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Crystal Glass Mixin ── */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), var(--glass-inset);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.10) 0%,
+                    rgba(255, 255, 255, 0.02) 40%,
+                    rgba(0, 212, 255, 0.04) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glass>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Iridescent border shimmer ── */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg,
+                    rgba(0, 212, 255, 0.6),
+                    rgba(168, 85, 247, 0.4),
+                    rgba(236, 72, 153, 0.3),
+                    rgba(0, 212, 255, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.07),
+                    transparent);
+            transform: skewX(-15deg);
+            transition: left 0.6s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .glass-card:hover::after {
+            left: 120%;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(0, 212, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .glass-card>* {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ── Navbar glass ── */
+        .nav-glass {
+            background: rgba(6, 10, 20, 0.6);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5),
+                inset 0 -1px 0 rgba(0, 212, 255, 0.1);
+        }
+
+        /* ── Terminal window ── */
+        .terminal-window {
+            background: rgba(6, 12, 24, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 14px;
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                0 0 40px rgba(0, 212, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-window::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg,
+                    rgba(0, 212, 255, 0.04) 0%,
+                    transparent 50%,
+                    rgba(168, 85, 247, 0.03) 100%);
+            pointer-events: none;
+        }
+
+        .terminal-header {
+            background: rgba(255, 255, 255, 0.04);
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        /* ── Terminal card (project/skill cards) ── */
+        .terminal-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .terminal-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg,
+                    rgba(0, 212, 255, 0.5),
+                    rgba(168, 85, 247, 0.3),
+                    rgba(236, 72, 153, 0.2),
+                    rgba(0, 212, 255, 0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .terminal-card:hover::before {
+            opacity: 1;
+        }
+
+        .terminal-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent, rgba(255, 255, 255, 0.07), transparent);
+            transform: skewX(-15deg);
+            transition: left 0.6s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .terminal-card:hover::after {
+            left: 120%;
+        }
+
+        .terminal-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(0, 212, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .terminal-card>* {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* ── Section backgrounds ── */
+        section.bg-glass {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* ── Accent classes ── */
         .text-accent {
             color: var(--accent-color);
         }
@@ -123,20 +434,20 @@
         }
 
         .shadow-accent {
-            box-shadow: 0 0 15px rgba(0, 173, 239, 0.5);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
         }
 
         .hover\:shadow-accent-hover:hover {
-            box-shadow: 0 0 25px rgba(0, 173, 239, 0.8);
+            box-shadow: 0 0 35px rgba(0, 212, 255, 0.7);
         }
 
-        /* Terminal-like button */
+        /* ── Crystal button ── */
         .btn-primary {
-            border: 1px solid var(--accent-color);
+            background: rgba(0, 212, 255, 0.06);
+            border: 1px solid rgba(0, 212, 255, 0.5);
             color: var(--accent-color);
             padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            /* rounded-md */
+            border-radius: 10px;
             transition: all 0.3s ease;
             cursor: pointer;
             text-decoration: none;
@@ -144,22 +455,56 @@
             touch-action: manipulation;
             -webkit-user-select: none;
             user-select: none;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    transparent 60%);
+            border-radius: inherit;
+            pointer-events: none;
         }
 
         .btn-primary:hover,
         .btn-primary:focus {
-            background-color: var(--accent-color);
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 173, 239, 0.7);
-            outline: 2px solid var(--accent-color);
-            outline-offset: 2px;
+            background: rgba(0, 212, 255, 0.18);
+            border-color: var(--accent-color);
+            color: #fff;
+            box-shadow: 0 0 24px rgba(0, 212, 255, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            outline: none;
+            transform: translateY(-1px);
         }
 
         .btn-primary:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
         }
 
-        /* Typing cursor */
+        /* ── Profile image ring ── */
+        .profile-ring {
+            padding: 4px;
+            background: linear-gradient(135deg, #00d4ff, #a855f7, #ec4899, #00d4ff);
+            border-radius: 50%;
+            animation: ring-rotate 4s linear infinite;
+        }
+
+        @keyframes ring-rotate {
+            from {
+                background-position: 0% 50%;
+            }
+
+            to {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* ── Typing cursor ── */
         .cursor {
             display: inline-block;
             width: 10px;
@@ -167,6 +512,7 @@
             background-color: var(--accent-color);
             margin-left: 5px;
             animation: blink 1s infinite;
+            box-shadow: 0 0 8px var(--accent-color);
         }
 
         @keyframes blink {
@@ -181,46 +527,35 @@
             }
         }
 
-        /* Terminal window style */
-        .terminal-window {
-            background-color: rgba(16, 16, 16, 0.6);
-            border: 1px solid rgba(0, 173, 239, 0.3);
-            border-radius: 0.5rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        /* ── Active nav link ── */
+        nav a.active {
+            color: var(--accent-color);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
-        .terminal-header {
-            background-color: rgba(40, 40, 40, 0.8);
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid rgba(0, 173, 239, 0.3);
+        /* ── Misc utilities ── */
+        .long-text {
+            overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
-        .terminal-card {
-            background-color: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(0, 173, 239, 0.2);
-            transition: all 0.3s ease;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .terminal-card:hover {
-            border-color: rgba(0, 173, 239, 0.6);
-            box-shadow: 0 0 20px rgba(0, 173, 239, 0.3);
-        }
-
-        /* Hide all legacy image edit buttons */
+        /* Hide edit buttons */
         button[onclick^="editImage"] {
             display: none !important;
         }
 
-        /* Removed in production: inline editing styles */
-
-        /* Fade-in animation for sections */
+        /* ── Fade-in animation ── */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
 
         .fade-in-section.is-visible {
@@ -228,13 +563,7 @@
             transform: translateY(0);
         }
 
-        /* Active nav link styling */
-        nav a.active {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        /* Touch-friendly link and button sizing */
+        /* ── Touch sizing ── */
         a,
         button {
             min-height: 44px;
@@ -244,7 +573,7 @@
             justify-content: center;
         }
 
-        /* Better focus visibility for keyboard navigation */
+        /* ── Focus ── */
         a:focus-visible,
         button:focus-visible,
         input:focus-visible,
@@ -253,31 +582,86 @@
             outline-offset: 2px;
         }
 
-        /* Performance: GPU acceleration for animations */
+        /* ── GPU hints ── */
         .fade-in-section,
         .terminal-card,
-        .btn-primary {
+        .btn-primary,
+        .glass-card {
             will-change: transform, opacity;
         }
 
-        /* Mobile-specific optimizations */
+        /* ── Form inputs glass style ── */
+        input,
+        textarea {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(0, 212, 255, 0.3) !important;
+            color: #e2e8f0 !important;
+            border-radius: 8px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: rgba(0, 212, 255, 0.8) !important;
+            box-shadow: 0 0 16px rgba(0, 212, 255, 0.2) !important;
+            outline: none !important;
+        }
+
+        /* ── Section alternate bg ── */
+        .section-alt {
+            background: rgba(255, 255, 255, 0.015);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* ── Footer glass ── */
+        footer {
+            background: rgba(6, 10, 20, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 212, 255, 0.15);
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ── Mobile optimizations ── */
         @media (max-width: 768px) {
             .cursor {
                 width: 8px;
                 height: 1rem;
             }
 
-            /* Reduce blur for better mobile performance */
-            .terminal-window {
-                backdrop-filter: blur(5px);
+            .terminal-window,
+            .terminal-card,
+            .glass-card {
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+            }
+
+            body::before,
+            body::after {
+                filter: blur(80px);
             }
 
             nav {
-                backdrop-filter: blur(5px);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
             }
         }
 
-        /* Tablet optimizations */
         @media (min-width: 768px) and (max-width: 1024px) {
             .container {
                 padding-left: 2rem;
@@ -285,20 +669,38 @@
             }
         }
 
-        /* Large screen optimizations */
         @media (min-width: 1920px) {
             .container {
                 max-width: 1400px;
             }
         }
+        .nav-text-glow {
+            transition: all 0.3s ease;
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .nav-text-glow:hover {
+            color: #00d4ff; /* text-accent */
+            text-shadow: 0 0 10px rgba(0,212,255,0.8), 0 0 20px rgba(0,212,255,0.4);
+        }
     </style>
 </head>
 
-<body class="bg-[#111] text-gray-300">
+<body class="text-gray-200">
+
+    <!-- Background mid orb -->
+    <div id="orb-mid" aria-hidden="true"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas" aria-hidden="true" style="
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    "></canvas>
 
     <!-- ===== Header / Navbar ===== -->
-    <nav
-        class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md shadow-lg shadow-black/5 transition-all duration-300">
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass transition-all duration-300">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <!-- Logo / Name -->
@@ -308,11 +710,16 @@
 
                 <!-- Desktop Nav -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#about" class="hover:text-accent transition-colors duration-300">/about</a>
-                    <a href="#skills" class="hover:text-accent transition-colors duration-300">/skills</a>
-                    <a href="#projects" class="hover:text-accent transition-colors duration-300">/projects</a>
-                    <a href="#resume" class="hover:text-accent transition-colors duration-300">/resume</a>
-                    <a href="#contact" class="hover:text-accent transition-colors duration-300">/contact</a>
+                    <a href="#about"
+                        class="nav-text-glow">/about</a>
+                    <a href="#skills"
+                        class="nav-text-glow">/skills</a>
+                    <a href="#projects"
+                        class="nav-text-glow">/projects</a>
+                    <a href="#resume"
+                        class="nav-text-glow">/resume</a>
+                    <a href="#contact"
+                        class="nav-text-glow">/contact</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -332,11 +739,16 @@
 
         <!-- Mobile Nav (Hidden) -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="#about" class="block hover:text-accent transition-colors duration-300">/about</a>
-            <a href="#skills" class="block hover:text-accent transition-colors duration-300">/skills</a>
-            <a href="#projects" class="block hover:text-accent transition-colors duration-300">/projects</a>
-            <a href="#resume" class="block hover:text-accent transition-colors duration-300">/resume</a>
-            <a href="#contact" class="block hover:text-accent transition-colors duration-300">/contact</a>
+            <a href="#about"
+                class="block nav-text-glow py-2">/about</a>
+            <a href="#skills"
+                class="block nav-text-glow py-2">/skills</a>
+            <a href="#projects"
+                class="block nav-text-glow py-2">/projects</a>
+            <a href="#resume"
+                class="block nav-text-glow py-2">/resume</a>
+            <a href="#contact"
+                class="block nav-text-glow py-2">/contact</a>
         </div>
     </nav>
 
@@ -350,10 +762,10 @@
                 or a public URL (e.g., from Imgur).
                 Example (relative path): src="./images/profile.jpg"
             -->
-            <div class="relative w-40 h-40 mx-auto mb-8">
+            <div class="relative w-56 h-56 mx-auto mb-8">
                 <img id="profile-pic" src="486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture"
                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/00adef/111111?text=MMN';"
-                    class="w-40 h-40 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
+                    class="w-56 h-56 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
                 <button onclick="editImage('profile-pic')"
                     class="absolute bottom-0 right-0 bg-accent text-black p-2 rounded-full hover:scale-110 transition-transform"
                     title="Edit Profile Picture">
@@ -371,7 +783,8 @@
             </div>
 
             <!-- Buttons -->
-            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
+            <div
+                class="mt-12 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
                 <a href="#about" class="btn-primary w-full md:w-auto">
                     $ cat /etc/passwd | grep "about"
                 </a>
@@ -439,25 +852,26 @@
                 <!-- Name -->
                 <h3 class="text-3xl font-bold mb-2">Md. Mostofa Nayon</h3>
                 <!-- Title -->
-                <p class="text-xl text-accent mb-6">Aspiring Network Engineer & Cyber Security Expert</p>
+                <p class="text-xl text-accent mb-6">Aspiring Network Engineer, Cyber Security Expert & Developer</p>
 
                 <!-- Description -->
                 <div class="text-base md:text-lg space-y-4 text-gray-300 long-text">
                     <p>
-                        A recently CCNA-certified Computer Science student with a strong passion for network engineering
-                        and cybersecurity. Proficient in configuring and managing network devices, with hands-on
-                        experience in both Windows and Linux Server environments.
+                        Computer Science student with a strong interest in software development, networking, and system
+                        administration across Linux and Windows environments.
+                        I have developed practical skills through academic coursework and personal projects, building a
+                        solid foundation in programming, cybersecurity, and system design.
                     </p>
                     <p>
-                        Eager to apply technical knowledge and problem-solving skills to secure and optimize network
-                        infrastructure.
+                        I am eager to gain real-world experience, continuously learn new technologies, and contribute to
+                        building secure and reliable systems.
                     </p>
                 </div>
 
                 <!-- Social Links -->
                 <div class="flex space-x-6 mt-8">
                     <!-- EDITABLE: Add your social links -->
-                    <a href="https://github.com/MMNayon00" target="_blank"
+                    <a href="https://github.com/MMNayon00" target="_blank" rel="noopener noreferrer"
                         class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                         title="GitHub">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -467,7 +881,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank"
+                    <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" rel="noopener noreferrer"
                         class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                         title="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -479,7 +893,7 @@
                         </svg>
                     </a>
                     <!-- EDITABLE: Facebook -->
-                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank"
+                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
                         class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                         title="Facebook">
                         <!-- Facebook mark -->
@@ -490,7 +904,7 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="mailto:mostofanayon2001@gmail.com"
+                    <a href="mailto:mostofanayon.official@gmail.com"
                         class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                         title="Email">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -506,7 +920,7 @@
     </section>
 
     <!-- ===== Skills Section ===== -->
-    <section id="skills" class="py-20 bg-black/50 fade-in-section">
+    <section id="skills" class="py-20 section-alt fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">$</span> /usr/bin/skills --list-all<span class="cursor"></span>
@@ -523,7 +937,7 @@
                     <!-- EDITABLE: Skills Category 1 -->
                     <div>
                         <h3 class="text-xl font-bold text-accent mb-3">Networking & Systems</h3>
-                        <ul class="list-disc list-inside space-y-2">
+                        <ul class="list-disc list-inside space-y-2 whitespace-normal md:whitespace-nowrap">
                             <li>Networking Concepts (TCP/IP, OSI)</li>
                             <li>Routing & Switching (RIP, EIGRP, OSPF)</li>
                             <li>VLANs, STP, Inter-VLAN Routing</li>
@@ -532,13 +946,15 @@
                             <li>Bash Scripting</li>
                             <li>IDS, Firewall Concepts</li>
                             <li>Cisco Packet Tracer</li>
+                            <li>AWS Basics</li>
+                            <li>Docker</li>
                         </ul>
                     </div>
 
                     <!-- EDITABLE: Skills Category 2 -->
                     <div>
                         <h3 class="text-xl font-bold text-accent mb-3">Ethical Hacking & Recon</h3>
-                        <ul class="list-disc list-inside space-y-2">
+                        <ul class="list-disc list-inside space-y-2 whitespace-normal md:whitespace-nowrap">
                             <li>Penetration Testing Methods</li>
                             <li>Footprinting & Reconnaissance</li>
                             <li>OSINT (Open-Source Intelligence)</li>
@@ -553,7 +969,7 @@
                     <!-- EDITABLE: Skills Category 3 -->
                     <div>
                         <h3 class="text-xl font-bold text-accent mb-3">Security, Programming & Tools</h3>
-                        <ul class="list-disc list-inside space-y-2">
+                        <ul class="list-disc list-inside space-y-2 whitespace-normal md:whitespace-nowrap">
                             <li>Web Application Hacking</li>
                             <li>SQL Injection & Cryptography</li>
                             <li>Bug Bounty & CTFs</li>
@@ -567,17 +983,22 @@
                 </div>
             </div>
 
-            <!-- Icons Only (EDITABLE): Add/remove icons by changing the image src URLs -->
+            <!-- 3D Rotating Skill Icon Sphere -->
             <div class="mt-10">
-                <h3 class="text-xl font-bold text-center mb-6">
-                    <span class="text-accent">#</span> Skills
+                <h3 class="text-xl font-bold text-center mb-8">
+                    <span class="text-accent">#</span> Tech Stack
                 </h3>
-                <!-- Composite skills banner provided by user -->
-                <div class="w-full flex justify-center mb-6">
-                    <img src="https://skills.syvixor.com/api/icons?perline=8&i=cpp,c,java,python,html,css,javascript,react,php,firebase,androidstudio,flutter,dart,linux,kalilinux,metasploit,windows,gitbash,github,git,cisco,canva,capcut,figma,mysql,ubuntu,adobelightroom"
-                        alt="Skills icons" loading="lazy"
-                        class="max-w-full h-auto rounded-md shadow-black/10 dark:shadow-accent/10"
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x120/eeeeee/111111?text=Skills+Icons';" />
+                <div id="skill-sphere-wrap" style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    perspective: 900px;
+                ">
+                    <div id="skill-sphere" style="
+                        position: relative;
+                        transform-style: preserve-3d;
+                        cursor: grab;
+                    "></div>
                 </div>
             </div>
         </div>
@@ -622,7 +1043,7 @@
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/VPN-Network-Implementation-Project" target="_blank"
+                    <a href="https://github.com/MMNayon00/VPN-Network-Implementation-Project" target="_blank" rel="noopener noreferrer"
                         class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
@@ -659,7 +1080,7 @@
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
                     <a href="https://github.com/MMNayon00/MikroTik-Router-Configuration-for-a-Small-Network/tree/main"
-                        target="_blank" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                        target="_blank" rel="noopener noreferrer" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -695,7 +1116,7 @@
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/Gallblader-Cancer-Detection-DL" target="_blank"
+                    <a href="https://github.com/MMNayon00/Gallblader-Cancer-Detection-DL" target="_blank" rel="noopener noreferrer"
                         class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
@@ -730,7 +1151,7 @@
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/Library-MS-Project" target="_blank"
+                    <a href="https://github.com/MMNayon00/Library-MS-Project" target="_blank" rel="noopener noreferrer"
                         class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
@@ -765,7 +1186,7 @@
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/DoorLock-Arduino-Project" target="_blank"
+                    <a href="https://github.com/MMNayon00/DoorLock-Arduino-Project" target="_blank" rel="noopener noreferrer"
                         class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
@@ -781,7 +1202,7 @@
     </section>
 
     <!-- ===== Resume Section ===== -->
-    <section id="resume" class="py-20 bg-black/50 fade-in-section">
+    <section id="resume" class="py-20 section-alt fade-in-section">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-12">
                 <span class="text-accent">#</span> cat /home/mostofanayon/resume.txt<span class="cursor"></span>
@@ -792,19 +1213,19 @@
                 <div>
                     <h3 class="text-3xl font-bold text-accent mb-6 border-b-2 border-accent/30 pb-2">Education</h3>
                     <div class="space-y-6">
-                        <div>
-                            <h4 class="text-xl font-bold">B.Sc. in Computer Science and Engineering</h4>
-                            <p class="text-accent mb-1">Daffodil International University</p>
+                        <div class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                            <h4 class="text-xl font-bold text-white">B.Sc. in Computer Science and Engineering</h4>
+                            <p class="text-accent mt-2 mb-1">Daffodil International University</p>
                             <p class="text-gray-400 text-sm">04/2022 – 04/2026</p>
                         </div>
-                        <div>
-                            <h4 class="text-xl font-bold">HSC (Science)</h4>
-                            <p class="text-accent mb-1">Daffodil International College</p>
+                        <div class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                            <h4 class="text-xl font-bold text-white">HSC (Science)</h4>
+                            <p class="text-accent mt-2 mb-1">Daffodil International College</p>
                             <p class="text-gray-400 text-sm">2021</p>
                         </div>
-                        <div>
-                            <h4 class="text-xl font-bold">SSC (Science)</h4>
-                            <p class="text-accent mb-1">Govt. Mohammadpur Model School and College</p>
+                        <div class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                            <h4 class="text-xl font-bold text-white">SSC (Science)</h4>
+                            <p class="text-accent mt-2 mb-1">Govt. Mohammadpur Model School and College</p>
                             <p class="text-gray-400 text-sm">2019</p>
                         </div>
                     </div>
@@ -841,15 +1262,20 @@
                 <!-- EDITABLE: Certifications -->
                 <div>
                     <h3 class="text-3xl font-bold text-accent mb-6 border-b-2 border-accent/30 pb-2">Certifications</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <h4 class="text-xl font-bold">Cisco Certified Network Associate (CCNA)</h4>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold">IT Infrastructure and Ethical Hacking (PGD)</h4>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold">AI+ Prompt Engineer Level 1</h4>
+                    <div class="relative p-6 md:p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-xl font-bold text-white">AWS Academy Graduate - Cloud Foundations</h4>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Cisco Certified Network Associate (CCNA)</h4>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">IT Infrastructure and Ethical Hacking (PGD)</h4>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">AI+ Prompt Engineer Level 1</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -938,7 +1364,7 @@
 
             <div class="flex justify-center space-x-8">
                 <!-- EDITABLE: Add your social links -->
-                <a href="https://github.com/MMNayon00" target="_blank"
+                <a href="https://github.com/MMNayon00" target="_blank" rel="noopener noreferrer"
                     class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                     title="GitHub">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -948,7 +1374,7 @@
                         </path>
                     </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank"
+                <a href="https://www.linkedin.com/in/md-mostofa-nayon/" target="_blank" rel="noopener noreferrer"
                     class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                     title="LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -959,7 +1385,7 @@
                     </svg>
                 </a>
                 <!-- EDITABLE: Facebook -->
-                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank"
+                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
                     class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                     title="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
@@ -974,11 +1400,11 @@
     </section>
 
     <!-- ===== Footer ===== -->
-    <footer class="py-8 bg-black/80 border-t border-accent/20">
+    <footer class="py-8">
         <div class="container mx-auto px-6 text-center text-gray-400">
             <!-- EDITABLE: Copyright -->
             <p>
-                &copy; 2025 Md. Mostofa Nayon. All rights reserved.
+                &copy; 2026 Md. Mostofa Nayon. All rights reserved.
             </p>
             <p class="text-sm mt-2">
                 $ echo "Made with passion" | tee <span class="text-accent">/dev/heart</span> > /dev/null
@@ -1015,7 +1441,7 @@
             // EDITABLE: Change these to your own text
             const textLines = [
                 "root@mostofanayon:~# whoami",
-                "Md. Mostofa Nayon — Aspiring Network Engineer & Cyber Security Expert"
+                "Md. Mostofa Nayon — Aspiring Network Engineer, Cyber Security Expert & Developer"
             ];
             let lineIndex = 0;
             let charIndex = 0;
@@ -1228,6 +1654,442 @@
             // No action is taken when clicking the edit buttons.
             return false;
         }
+    </script>
+    <!-- ===== Space Starfield Engine ===== -->
+    <script>
+        (function () {
+            /* ─── Canvas Setup ─── */
+            const canvasEl = document.getElementById('particles-canvas');
+            if (!canvasEl) return;
+            canvasEl.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;';
+            const ctx = canvasEl.getContext('2d');
+
+            let W, H;
+            let mouse = { x: 0, y: 0, cx: 0, cy: 0 }; // cx/cy = center-relative
+            let animId;
+
+            /* ─── Resize ─── */
+            function resize() {
+                W = canvasEl.width = window.innerWidth;
+                H = canvasEl.height = window.innerHeight;
+                mouse.cx = 0; mouse.cy = 0;
+            }
+
+            /* ─── Star Layers ─── */
+            // Each layer: parallax factor, size range, count, opacity range
+            const LAYERS = [
+                { factor: 0.01, minR: 0.3, maxR: 0.8, count: 320, minA: 0.3, maxA: 0.7, color: '#ffffff' },  // far
+                { factor: 0.03, minR: 0.6, maxR: 1.4, count: 160, minA: 0.5, maxA: 0.9, color: '#d0e8ff' },  // mid
+                { factor: 0.07, minR: 1.0, maxR: 2.2, count: 60, minA: 0.7, maxA: 1.0, color: '#88ccff' },  // near
+            ];
+
+            let stars = [];
+
+            function rnd(a, b) { return a + Math.random() * (b - a); }
+
+            function createStars() {
+                stars = [];
+                for (const L of LAYERS) {
+                    for (let i = 0; i < L.count; i++) {
+                        stars.push({
+                            layer: L,
+                            x: rnd(0, W),
+                            y: rnd(0, H),
+                            r: rnd(L.minR, L.maxR),
+                            baseAlpha: rnd(L.minA, L.maxA),
+                            alpha: 0,
+                            twinklePhase: rnd(0, Math.PI * 2),
+                            twinkleSpeed: rnd(0.005, 0.04),
+                            // some bright stars get a glow
+                            glow: Math.random() < 0.08,
+                        });
+                    }
+                }
+            }
+
+            /* ─── Shooting Star ─── */
+            let shooters = [];
+            function launchShooter() {
+                const startX = rnd(W * 0.1, W * 0.9);
+                const startY = rnd(0, H * 0.4);
+                const angle = rnd(20, 50) * Math.PI / 180; // downward-right
+                const length = rnd(180, 380);
+                const speed = rnd(8, 16);
+                const life = length / speed;
+
+                shooters.push({
+                    x: startX, y: startY,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed,
+                    length, speed, life,
+                    maxLife: life,
+                    trail: [],
+                });
+
+                // Schedule next
+                setTimeout(launchShooter, rnd(3000, 8000));
+            }
+
+            /* ─── Draw ─── */
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+                /* Stars */
+                for (const s of stars) {
+                    s.twinklePhase += s.twinkleSpeed;
+                    s.alpha = s.baseAlpha * (0.6 + 0.4 * Math.sin(s.twinklePhase));
+
+                    // Mouse parallax offset
+                    const ox = mouse.cx * s.layer.factor;
+                    const oy = mouse.cy * s.layer.factor;
+
+                    const sx = ((s.x + ox) % W + W) % W;
+                    const sy = ((s.y + oy) % H + H) % H;
+
+                    if (s.glow) {
+                        const grd = ctx.createRadialGradient(sx, sy, 0, sx, sy, s.r * 5);
+                        grd.addColorStop(0, `rgba(180,220,255,${s.alpha * 0.6})`);
+                        grd.addColorStop(1, 'rgba(0,0,0,0)');
+                        ctx.beginPath();
+                        ctx.arc(sx, sy, s.r * 5, 0, Math.PI * 2);
+                        ctx.fillStyle = grd;
+                        ctx.fill();
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(sx, sy, s.r, 0, Math.PI * 2);
+                    ctx.fillStyle = hexAlpha(s.layer.color, s.alpha);
+                    ctx.fill();
+                }
+
+                /* Shooting stars */
+                for (let i = shooters.length - 1; i >= 0; i--) {
+                    const sh = shooters[i];
+                    sh.trail.push({ x: sh.x, y: sh.y });
+                    if (sh.trail.length > 20) sh.trail.shift();
+
+                    sh.x += sh.vx;
+                    sh.y += sh.vy;
+                    sh.life--;
+
+                    const progress = sh.life / sh.maxLife;
+                    const alpha = Math.min(progress * 3, 1.0);
+
+                    if (sh.trail.length > 1) {
+                        ctx.beginPath();
+                        ctx.moveTo(sh.trail[0].x, sh.trail[0].y);
+                        for (let j = 1; j < sh.trail.length; j++) {
+                            ctx.lineTo(sh.trail[j].x, sh.trail[j].y);
+                        }
+                        const grad = ctx.createLinearGradient(
+                            sh.trail[0].x, sh.trail[0].y,
+                            sh.trail[sh.trail.length - 1].x, sh.trail[sh.trail.length - 1].y
+                        );
+                        grad.addColorStop(0, `rgba(255,255,255,0)`);
+                        grad.addColorStop(1, `rgba(200,230,255,${alpha})`);
+                        ctx.strokeStyle = grad;
+                        ctx.lineWidth = 1.5;
+                        ctx.stroke();
+                    }
+
+                    // Head glow
+                    const hGrd = ctx.createRadialGradient(sh.x, sh.y, 0, sh.x, sh.y, 4);
+                    hGrd.addColorStop(0, `rgba(255,255,255,${alpha})`);
+                    hGrd.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.beginPath();
+                    ctx.arc(sh.x, sh.y, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = hGrd;
+                    ctx.fill();
+
+                    if (sh.life <= 0) shooters.splice(i, 1);
+                }
+
+                animId = requestAnimationFrame(draw);
+            }
+
+            function hexAlpha(hex, a) {
+                const r = parseInt(hex.slice(1, 3), 16);
+                const g = parseInt(hex.slice(3, 5), 16);
+                const b = parseInt(hex.slice(5, 7), 16);
+                return `rgba(${r},${g},${b},${a})`;
+            }
+
+            /* ─── Mouse Tracking ─── */
+            window.addEventListener('mousemove', e => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                // Center-relative offset for parallax
+                mouse.cx = e.clientX - W / 2;
+                mouse.cy = e.clientY - H / 2;
+            }, { passive: true });
+
+            /* ─── Resize ─── */
+            let rTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(rTimer);
+                rTimer = setTimeout(() => {
+                    cancelAnimationFrame(animId);
+                    resize();
+                    createStars();
+                    draw();
+                }, 200);
+            }, { passive: true });
+
+            /* ─── Visibility ─── */
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) cancelAnimationFrame(animId);
+                else draw();
+            });
+
+            /* ─── Init ─── */
+            // Reduce on mobile
+            if (window.innerWidth < 768) {
+                LAYERS[0].count = 160;
+                LAYERS[1].count = 80;
+                LAYERS[2].count = 30;
+            }
+
+            resize();
+            createStars();
+            draw();
+            setTimeout(launchShooter, rnd(1500, 3000)); // first shooting star
+        })();
+    </script>
+
+    <!-- ===== 3D Skill Sphere ===== -->
+    <script>
+        (function () {
+            const sphere = document.getElementById('skill-sphere');
+            if (!sphere) return;
+
+            // All the skills with their icon URLs
+            const SKILLS = [
+                { name: 'C++', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+                { name: 'C', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg' },
+                { name: 'Java', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+                { name: 'Python', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+                { name: 'HTML', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+                { name: 'CSS', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+                { name: 'JavaScript', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+                { name: 'React', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+                { name: 'PHP', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
+                { name: 'Firebase', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+                { name: 'Flutter', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
+                { name: 'Dart', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg' },
+                { name: 'Linux', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+                { name: 'Git', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+                { name: 'GitHub', src: 'https://cdn.simpleicons.org/github/ffffff' },
+                { name: 'MySQL', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+                { name: 'Ubuntu', src: 'https://cdn.simpleicons.org/ubuntu/E95420' },
+                { name: 'Figma', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
+                { name: 'Android', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg' },
+                { name: 'Kali Linux', src: 'https://cdn.simpleicons.org/kalilinux/557C94' },
+                { name: 'Bash', src: 'https://cdn.simpleicons.org/gnubash/4EAA25' },
+                { name: 'Windows', src: 'https://www.google.com/s2/favicons?domain=windows.com&sz=128' },
+                { name: 'Canva', src: 'https://www.google.com/s2/favicons?domain=canva.com&sz=128' },
+                { name: 'Cisco', src: 'https://cdn.simpleicons.org/cisco/1BA0D7' },
+                { name: 'Docker', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+                { name: 'VS Code', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
+                { name: 'AWS', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
+                { name: 'Metasploit', src: 'https://cdn.simpleicons.org/metasploit/2596CD' },
+            ];
+
+            const isMobile = window.innerWidth < 768;
+            const R = isMobile ? 140 : 200;  // sphere radius (px)
+            const SIZE = isMobile ? 320 : 480;  // container size
+            const CX = SIZE / 2;
+            const CY = SIZE / 2;
+            const N = SKILLS.length;
+
+            sphere.style.width = SIZE + 'px';
+            sphere.style.height = SIZE + 'px';
+
+            // Golden spiral distribution for even point spacing on a sphere
+            const points = SKILLS.map((skill, i) => {
+                const phi = Math.acos(1 - 2 * (i + 0.5) / N);
+                const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+                return {
+                    skill,
+                    ox: Math.sin(phi) * Math.cos(theta),  // unit-sphere coords
+                    oy: Math.sin(phi) * Math.sin(theta),
+                    oz: Math.cos(phi),
+                    el: null,
+                };
+            });
+
+            // Build DOM elements
+            sphere.innerHTML = '';
+            points.forEach(p => {
+                const wrap = document.createElement('div');
+                wrap.style.cssText = `
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                transform-origin: center;
+                transition: opacity 0.2s;
+                cursor: pointer;
+                user-select: none;
+                will-change: transform, opacity;
+            `;
+
+                const img = document.createElement('img');
+                img.src = p.skill.src;
+                img.alt = p.skill.name;
+                img.style.cssText = `
+                width: 60px; height: 60px;
+                object-fit: contain;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.07);
+                padding: 6px;
+                box-sizing: border-box;
+                box-shadow: 0 0 10px rgba(0,212,255,0.2);
+                border: 1px solid rgba(0,212,255,0.15);
+                transition: box-shadow 0.2s, transform 0.2s;
+                display: block;
+                pointer-events: none;
+            `;
+                img.onerror = function () { this.src = 'https://placehold.co/32x32/111/0df?text=?'; };
+
+                const label = document.createElement('span');
+                label.textContent = p.skill.name;
+                label.style.cssText = `
+                font-size: 9px;
+                color: rgba(0,212,255,0.7);
+                margin-top: 3px;
+                white-space: nowrap;
+                font-family: 'JetBrains Mono', monospace;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.2s;
+            `;
+
+                wrap.appendChild(img);
+                wrap.appendChild(label);
+                wrap.addEventListener('mouseenter', () => {
+                    label.style.opacity = '1';
+                    img.style.boxShadow = '0 0 18px rgba(0,212,255,0.7)';
+                    img.style.transform = 'scale(1.2)';
+                });
+                wrap.addEventListener('mouseleave', () => {
+                    label.style.opacity = '0';
+                    img.style.boxShadow = '0 0 10px rgba(0,212,255,0.2)';
+                    img.style.transform = 'scale(1)';
+                });
+
+                sphere.appendChild(wrap);
+                p.el = wrap;
+            });
+
+            // Rotation state
+            let rotX = 0.3;    // radians
+            let rotY = 0;
+            let velX = 0.0008; // auto-spin
+            let velY = 0.003;
+            let drag = false;
+            let lastMX = 0, lastMY = 0;
+            let animId;
+
+            function rotatePoint(ox, oy, oz) {
+                // Rotate around Y axis
+                const x1 = ox * Math.cos(rotY) + oz * Math.sin(rotY);
+                const y1 = oy;
+                const z1 = -ox * Math.sin(rotY) + oz * Math.cos(rotY);
+                // Rotate around X axis
+                const x2 = x1;
+                const y2 = y1 * Math.cos(rotX) - z1 * Math.sin(rotX);
+                const z2 = y1 * Math.sin(rotX) + z1 * Math.cos(rotX);
+                return { x: x2, y: y2, z: z2 };
+            }
+
+            function render() {
+                if (!drag) {
+                    rotY += velY;
+                    rotX += velX;
+                }
+
+                // Compute z-sorted order
+                const projected = points.map(p => {
+                    const r = rotatePoint(p.ox, p.oy, p.oz);
+                    const scale = (r.z + 2) / 3;  // depth scale (0.33 .. 1.0)
+                    return { p, r, scale };
+                });
+
+                // Sort back-to-front for overlapping
+                projected.sort((a, b) => a.r.z - b.r.z);
+
+                projected.forEach(({ p, r, scale }) => {
+                    const px2 = CX + r.x * R;
+                    const py2 = CY + r.y * R;
+                    const minS = isMobile ? 22 : 28;
+                    const maxS = isMobile ? 38 : 60;
+                    const iconSize = Math.max(minS, maxS * scale);
+                    const opacity = Math.max(0.15, scale * 0.95);
+
+                    p.el.style.transform = `translate(${px2 - iconSize / 2}px, ${py2 - iconSize / 2}px)`;
+                    p.el.style.width = `${iconSize}px`;
+                    p.el.style.height = `${iconSize}px`;
+                    p.el.style.opacity = opacity;
+                    p.el.style.zIndex = Math.round(r.z * 100 + 100);
+                    p.el.querySelector('img').style.width = `${iconSize}px`;
+                    p.el.querySelector('img').style.height = `${iconSize}px`;
+                });
+
+                animId = requestAnimationFrame(render);
+            }
+
+            // Mouse drag
+            sphere.addEventListener('mousedown', e => {
+                drag = true;
+                lastMX = e.clientX;
+                lastMY = e.clientY;
+                sphere.style.cursor = 'grabbing';
+                e.preventDefault();
+            });
+            window.addEventListener('mousemove', e => {
+                if (!drag) return;
+                const dx = e.clientX - lastMX;
+                const dy = e.clientY - lastMY;
+                rotY += dx * 0.006;
+                rotX += dy * 0.006;
+                lastMX = e.clientX;
+                lastMY = e.clientY;
+            });
+            window.addEventListener('mouseup', () => {
+                drag = false;
+                sphere.style.cursor = 'grab';
+            });
+
+            // Touch drag
+            sphere.addEventListener('touchstart', e => {
+                drag = true;
+                lastMX = e.touches[0].clientX;
+                lastMY = e.touches[0].clientY;
+            }, { passive: true });
+            sphere.addEventListener('touchmove', e => {
+                if (!drag) return;
+                const dx = e.touches[0].clientX - lastMX;
+                const dy = e.touches[0].clientY - lastMY;
+                rotY += dx * 0.006;
+                rotX += dy * 0.006;
+                lastMX = e.touches[0].clientX;
+                lastMY = e.touches[0].clientY;
+            }, { passive: true });
+            sphere.addEventListener('touchend', () => { drag = false; });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) cancelAnimationFrame(animId);
+                else render();
+            });
+
+            // Mobile size
+            if (window.innerWidth < 640) {
+                sphere.style.width = '280px';
+                sphere.style.height = '280px';
+            }
+
+            render();
+        })();
     </script>
 
 </body>
