@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#111111">
     <meta name="description"
-        content="Md. Mostofa Nayon - Aspiring Network Engineer & Cyber Security Expert. CCNA certified professional specializing in network engineering, ethical hacking, and cybersecurity.">
+        content="Md. Mostofa Nayon - Aspiring Network Engineer & Cyber Security Enthusiast. CCNA certified professional specializing in network engineering, ethical hacking, and cybersecurity.">
     <meta name="keywords"
         content="Network Engineer, Cyber Security, CCNA, Ethical Hacking, Portfolio, Md. Mostofa Nayon">
     <meta name="author" content="Md. Mostofa Nayon">
@@ -15,7 +15,7 @@
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Md. Mostofa Nayon - Portfolio">
-    <meta property="og:description" content="Aspiring Network Engineer & Cyber Security Expert">
+    <meta property="og:description" content="Aspiring Network Engineer & Cyber Security Enthusiast">
     <meta property="og:url" content="">
 
     <!-- Web App & Apple Touch Icons -->
@@ -504,6 +504,19 @@
             }
         }
 
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 15px rgba(0, 212, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 35px rgba(0, 212, 255, 0.9), 0 0 60px rgba(0, 212, 255, 0.6);
+            }
+        }
+
         /* ── Typing cursor ── */
         .cursor {
             display: inline-block;
@@ -544,6 +557,13 @@
             max-width: 100%;
             height: auto;
             display: block;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
         }
 
         /* Hide edit buttons */
@@ -765,7 +785,7 @@
             <div class="relative w-56 h-56 mx-auto mb-8">
                 <img id="profile-pic" src="486032278_2701671483354236_7726345450350157977_n.jpg" alt="Profile Picture"
                     onerror="this.onerror=null; this.src='https://placehold.co/160x160/00adef/111111?text=MMN';"
-                    class="w-56 h-56 rounded-full object-cover border-4 border-accent shadow-accent transition-all duration-300 hover:shadow-accent-hover">
+                    class="w-56 h-56 rounded-full object-cover border-4 border-accent animate-pulse-glow transition-all duration-300 hover:scale-105">
                 <button onclick="editImage('profile-pic')"
                     class="absolute bottom-0 right-0 bg-accent text-black p-2 rounded-full hover:scale-110 transition-transform"
                     title="Edit Profile Picture">
@@ -852,7 +872,7 @@
                 <!-- Name -->
                 <h3 class="text-3xl font-bold mb-2">Md. Mostofa Nayon</h3>
                 <!-- Title -->
-                <p class="text-xl text-accent mb-6">Aspiring Network Engineer, Cyber Security Expert & Developer</p>
+                <p class="text-xl text-accent mb-6">Aspiring Network Engineer, Cyber Security Enthusiast & Developer</p>
 
                 <!-- Description -->
                 <div class="text-base md:text-lg space-y-4 text-gray-300 long-text">
@@ -1441,7 +1461,7 @@
             // EDITABLE: Change these to your own text
             const textLines = [
                 "root@mostofanayon:~# whoami",
-                "Md. Mostofa Nayon — Aspiring Network Engineer, Cyber Security Expert & Developer"
+                "Md. Mostofa Nayon — Aspiring Network Engineer, Cyber Security Enthusiast & Developer"
             ];
             let lineIndex = 0;
             let charIndex = 0;
