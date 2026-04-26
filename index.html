@@ -31,7 +31,7 @@
             var html = document.documentElement;
             html.classList.add('dark');
             html.classList.remove('light');
-            
+
             // Force scroll to top on reload/load
             if (history.scrollRestoration) {
                 history.scrollRestoration = 'manual';
@@ -512,6 +512,7 @@
             0% {
                 box-shadow: 0 0 15px rgba(0, 212, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.3);
             }
+
             100% {
                 box-shadow: 0 0 35px rgba(0, 212, 255, 0.9), 0 0 60px rgba(0, 212, 255, 0.6);
             }
@@ -694,18 +695,298 @@
                 max-width: 1400px;
             }
         }
+
         .nav-text-glow {
             transition: all 0.3s ease;
-            color: #d1d5db; /* text-gray-300 */
+            color: #d1d5db;
+            /* text-gray-300 */
         }
+
         .nav-text-glow:hover {
-            color: #00d4ff; /* text-accent */
-            text-shadow: 0 0 10px rgba(0,212,255,0.8), 0 0 20px rgba(0,212,255,0.4);
+            color: #00d4ff;
+            /* text-accent */
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.8), 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+
+        /* ── Splash Screen Intro ── */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: #020818;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.8s ease;
+            overflow: hidden;
+        }
+
+        #splash-screen.hidden-splash {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-orb-1,
+        .splash-orb-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: splashOrbFloat 5s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+
+        .splash-orb-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 212, 255, 0.15);
+            top: 10%;
+            left: 20%;
+        }
+
+        .splash-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(168, 85, 247, 0.15);
+            bottom: 10%;
+            right: 20%;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes splashOrbFloat {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            100% {
+                transform: scale(1.1) translate(20px, -20px);
+            }
+        }
+
+        .splash-content {
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .splash-logo-container {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-right: -0.15em;
+            /* counteracts letter-spacing on the right edge for perfect centering */
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .splash-logo-container {
+                font-size: 7rem;
+            }
+        }
+
+        .splash-letter {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            animation: splashReveal 0.6s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .splash-letter:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .splash-letter:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .splash-letter:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .splash-dot {
+            opacity: 0;
+            transform: scale(0);
+            color: #00d4ff;
+            margin-left: -0.12em;
+            /* offset the 'N' letter-spacing */
+            animation: splashDotReveal 0.5s cubic-bezier(0.17, 0.84, 0.44, 1) forwards;
+            animation-delay: 0.8s;
+            text-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+        }
+
+        @keyframes splashReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes splashDotReveal {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .splash-roles-container {
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+        }
+
+        .splash-role {
+            position: absolute;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            color: #a0aec0;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 400;
+            transform: translateY(20px);
+        }
+
+        @keyframes roleCycleShort {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            20%,
+            80% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes roleStay {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            20%,
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .splash-role:nth-child(1) {
+            animation: roleCycleShort 1.8s cubic-bezier(0.68, -0.55, 0.26, 1.55) forwards;
+            animation-delay: 1.0s;
+        }
+
+        .splash-role:nth-child(2) {
+            animation: roleStay 1.0s cubic-bezier(0.68, -0.55, 0.26, 1.55) forwards;
+            animation-delay: 2.8s;
+            color: #00d4ff;
+        }
+
+        .splash-progress-wrapper {
+            margin-top: 40px;
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            opacity: 0;
+            animation: splashProgressFadeIn 0.5s forwards;
+            animation-delay: 1.0s;
+        }
+
+        .splash-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #a855f7);
+            width: 0%;
+            animation: splashProgressFill 2.5s ease-in-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        @keyframes splashProgressFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes splashProgressFill {
+            to {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body class="text-gray-200">
+
+    <!-- ===== Splash Screen Intro ===== -->
+    <div id="splash-screen">
+        <div class="splash-orb-1"></div>
+        <div class="splash-orb-2"></div>
+        <div class="splash-content">
+            <div class="splash-logo-container">
+                <span class="splash-letter">M</span>
+                <span class="splash-letter">M</span>
+                <span class="splash-letter">N</span>
+                <span class="splash-dot">.</span>
+            </div>
+            <div class="splash-roles-container">
+                <div class="splash-role">System Init</div>
+                <div class="splash-role">Welcome</div>
+            </div>
+            <div class="splash-progress-wrapper">
+                <div class="splash-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Immediately lock scrolling and force-scroll to top
+        document.body.style.overflow = 'hidden';
+        window.scrollTo(0, 0);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const splash = document.getElementById('splash-screen');
+            if (splash) {
+                // Intro duration logic based on animations:
+                // Timeline finishes around 3.8s. We start fading out at 4.0s
+                setTimeout(() => {
+                    // Clear hash and force scroll to top to prevent anchor jumping on reload
+                    if (window.location.hash) {
+                        history.replaceState(null, null, window.location.pathname + window.location.search);
+                    }
+                    window.scrollTo(0, 0);
+
+                    splash.classList.add('hidden-splash');
+                    document.body.style.overflow = ''; // Restore scrolling
+                }, 4000);
+
+                // Remove from DOM safely
+                setTimeout(() => {
+                    splash.remove();
+                }, 4800);
+            }
+        });
+    </script>
 
     <!-- Background mid orb -->
     <div id="orb-mid" aria-hidden="true"></div>
@@ -730,16 +1011,11 @@
 
                 <!-- Desktop Nav -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#about"
-                        class="nav-text-glow">/about</a>
-                    <a href="#skills"
-                        class="nav-text-glow">/skills</a>
-                    <a href="#projects"
-                        class="nav-text-glow">/projects</a>
-                    <a href="#resume"
-                        class="nav-text-glow">/resume</a>
-                    <a href="#contact"
-                        class="nav-text-glow">/contact</a>
+                    <a href="#about" class="nav-text-glow">/about</a>
+                    <a href="#skills" class="nav-text-glow">/skills</a>
+                    <a href="#projects" class="nav-text-glow">/projects</a>
+                    <a href="#resume" class="nav-text-glow">/resume</a>
+                    <a href="#contact" class="nav-text-glow">/contact</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -759,16 +1035,11 @@
 
         <!-- Mobile Nav (Hidden) -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
-            <a href="#about"
-                class="block nav-text-glow py-2">/about</a>
-            <a href="#skills"
-                class="block nav-text-glow py-2">/skills</a>
-            <a href="#projects"
-                class="block nav-text-glow py-2">/projects</a>
-            <a href="#resume"
-                class="block nav-text-glow py-2">/resume</a>
-            <a href="#contact"
-                class="block nav-text-glow py-2">/contact</a>
+            <a href="#about" class="block nav-text-glow py-2">/about</a>
+            <a href="#skills" class="block nav-text-glow py-2">/skills</a>
+            <a href="#projects" class="block nav-text-glow py-2">/projects</a>
+            <a href="#resume" class="block nav-text-glow py-2">/resume</a>
+            <a href="#contact" class="block nav-text-glow py-2">/contact</a>
         </div>
     </nav>
 
@@ -913,7 +1184,8 @@
                         </svg>
                     </a>
                     <!-- EDITABLE: Facebook -->
-                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank"
+                        rel="noopener noreferrer"
                         class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                         title="Facebook">
                         <!-- Facebook mark -->
@@ -1063,8 +1335,8 @@
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/VPN-Network-Implementation-Project" target="_blank" rel="noopener noreferrer"
-                        class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/VPN-Network-Implementation-Project" target="_blank"
+                        rel="noopener noreferrer" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -1100,7 +1372,8 @@
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
                     <a href="https://github.com/MMNayon00/MikroTik-Router-Configuration-for-a-Small-Network/tree/main"
-                        target="_blank" rel="noopener noreferrer" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                        target="_blank" rel="noopener noreferrer" class="btn-primary text-sm flex-1 text-center">$ git
+                        clone ...</a>
                 </div>
             </div>
 
@@ -1136,8 +1409,8 @@
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/Gallblader-Cancer-Detection-DL" target="_blank" rel="noopener noreferrer"
-                        class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/Gallblader-Cancer-Detection-DL" target="_blank"
+                        rel="noopener noreferrer" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -1206,8 +1479,8 @@
                 </div>
                 <div class="p-6 pt-0 flex space-x-4">
                     <!-- EDITABLE: Update href to your GitHub repo -->
-                    <a href="https://github.com/MMNayon00/DoorLock-Arduino-Project" target="_blank" rel="noopener noreferrer"
-                        class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
+                    <a href="https://github.com/MMNayon00/DoorLock-Arduino-Project" target="_blank"
+                        rel="noopener noreferrer" class="btn-primary text-sm flex-1 text-center">$ git clone ...</a>
                 </div>
             </div>
 
@@ -1233,17 +1506,20 @@
                 <div>
                     <h3 class="text-3xl font-bold text-accent mb-6 border-b-2 border-accent/30 pb-2">Education</h3>
                     <div class="space-y-6">
-                        <div class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                        <div
+                            class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
                             <h4 class="text-xl font-bold text-white">B.Sc. in Computer Science and Engineering</h4>
                             <p class="text-accent mt-2 mb-1">Daffodil International University</p>
                             <p class="text-gray-400 text-sm">04/2022 – 04/2026</p>
                         </div>
-                        <div class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                        <div
+                            class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
                             <h4 class="text-xl font-bold text-white">HSC (Science)</h4>
                             <p class="text-accent mt-2 mb-1">Daffodil International College</p>
                             <p class="text-gray-400 text-sm">2021</p>
                         </div>
-                        <div class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                        <div
+                            class="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
                             <h4 class="text-xl font-bold text-white">SSC (Science)</h4>
                             <p class="text-accent mt-2 mb-1">Govt. Mohammadpur Model School and College</p>
                             <p class="text-gray-400 text-sm">2019</p>
@@ -1282,7 +1558,8 @@
                 <!-- EDITABLE: Certifications -->
                 <div>
                     <h3 class="text-3xl font-bold text-accent mb-6 border-b-2 border-accent/30 pb-2">Certifications</h3>
-                    <div class="relative p-6 md:p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
+                    <div
+                        class="relative p-6 md:p-8 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-accent/40 hover:shadow-[0_0_20px_rgba(0,212,255,0.15)] transition-all duration-300">
                         <div class="space-y-6">
                             <div>
                                 <h4 class="text-xl font-bold text-white">AWS Academy Graduate - Cloud Foundations</h4>
@@ -1291,7 +1568,8 @@
                                 <h4 class="text-xl font-bold text-white">Cisco Certified Network Associate (CCNA)</h4>
                             </div>
                             <div>
-                                <h4 class="text-xl font-bold text-white">IT Infrastructure and Ethical Hacking (PGD)</h4>
+                                <h4 class="text-xl font-bold text-white">IT Infrastructure and Ethical Hacking (PGD)
+                                </h4>
                             </div>
                             <div>
                                 <h4 class="text-xl font-bold text-white">AI+ Prompt Engineer Level 1</h4>
@@ -1376,7 +1654,7 @@
         <div class="text-center max-w-3xl mx-auto mt-12">
             <!-- EDITABLE: Email -->
             <p class="text-lg mb-6 long-text">
-                Or contact me directly at: <a href="mailto:mostofanayon.official@gmail.com"
+                Let's Build Something Together. <a href="mailto:mostofanayon.official@gmail.com"
                     class="text-accent hover:underline">mostofanayon.official@gmail.com</a>
                 <span class="mx-2">|</span>
                 Phone: <a href="tel:+8801301994411" class="text-accent hover:underline">+8801301994411</a>
@@ -1405,7 +1683,8 @@
                     </svg>
                 </a>
                 <!-- EDITABLE: Facebook -->
-                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.facebook.com/share/1Di3X98S6W/?mibextid=wwXIfr" target="_blank"
+                    rel="noopener noreferrer"
                     class="text-gray-400 hover:text-accent transition-transform duration-300 hover:scale-125"
                     title="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
